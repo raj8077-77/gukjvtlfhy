@@ -19,6 +19,11 @@
             --amazon-teal: #007185;
             --border-light: #e7e7e7; 
             --border-dark: #d5d9d9;
+            /* Animated Tracking Vars */
+            --amazon-track-green: #007600; 
+            --amazon-track-blue: #0084d6; 
+            --text-muted: #565959;
+            --amazon-star-gold: #FFA41C;
         }
         
         * {
@@ -54,7 +59,7 @@
         a { text-decoration: none; color: inherit; }
 
         /* --- TOUCH FEEDBACK --- */
-        button:active, .amz-btn:active, .list-button:active, .admin-button:active, .pill-button:active, .account-button:active, .os-amz-action-btn:active {
+        button:active, .amz-btn:active, .list-button:active, .admin-button:active, .pill-button:active, .account-button:active, .os-amz-action-btn:active, .os-sub-nav-bar:active, .card-accordion:active {
             opacity: 0.6;
             background-color: #d5d9d9 !important;
             transition: background-color 0.1s, opacity 0.1s;
@@ -264,7 +269,7 @@
         .delivery-status .text-bold { font-weight: bold; }
         .delivery-feedback { margin-bottom: 16px; }
         .delivery-feedback .feedback-text { font-size: 0.8rem; color: #565959; margin-bottom: 4px; }
-        .delivery-feedback .stars { color: #FFA41C; font-size: 1.5rem; }
+        .delivery-feedback .stars { color: var(--amazon-star-gold); font-size: 1.5rem; }
 
         .list-button { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid #ddd; text-decoration: none; color: inherit; }
         .list-button .button-text { display: flex; flex-direction: column; }
@@ -277,32 +282,76 @@
         .details-page-footer { padding: 16px; color: #565959; font-size: 0.9rem; }
         .details-page-ad-image { width: calc(100% + 32px) !important; margin: 0 -16px; display: block; height: auto; }
 
-        /* --- Track Page Styles --- */
-        .track-module { padding: 16px; }
+        /* --- Track Page Tablet Centering --- */
+        @media (min-width: 600px) {
+            #track-page.active { display: flex; justify-content: center; background-color: var(--light-grey); width: 100%; }
+            #track-page .content { max-width: 800px; width: 100%; margin: 0 auto; box-shadow: 0 0 10px rgba(0,0,0,0.05); border-left: 1px solid var(--border-light); border-right: 1px solid var(--border-light); background-color: #fff; }
+            .tracking-card { padding: 24px 32px; }
+            .labels-container { width: 85%; }
+            .step-label { font-size: 13px; width: 90px; }
+            .labels-container .step-label:first-child { width: 80px; }
+            .labels-container .step-label:last-child { width: 80px; }
+            .thick-separator { margin: 0 -32px 16px -32px; }
+            .thin-separator { margin: 0 -32px; }
+            .shipped-with-info { margin: 0 -16px; padding: 0 32px 16px 32px; }
+        }
+
+        /* --- Track Page Styles & Animated Component --- */
+        .track-module { padding: 16px; background: #fff; }
         .track-module-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .track-module-header h2 { font-size: 1rem; font-weight: bold; margin: 0; flex-grow: 1; }
+        .track-module-header h2 { font-size: 1.1rem; font-weight: bold; margin: 0; flex-grow: 1; color: var(--amazon-track-green);}
         .track-module-header .see-all-orders { font-size: 0.9rem; color: var(--amazon-teal); text-decoration: none; white-space: nowrap; }
         .thin-separator { border: none; border-top: 1px solid #ddd; margin: 0 -16px; }
-        .track-module .full-width-image { margin: 0 -16px; width: calc(100% + 32px); display: block; }
         .thick-separator { border: none; border-top: 8px solid #EAEDED; margin: 0 -16px 16px -16px; }
         .shipping-address-section h3 { font-size: 1.2rem; margin: 0 0 8px 0; }
         .shipping-address-section p { margin: 0; font-size: 1rem; line-height: 1.4; white-space: pre-wrap; }
         .order-info-section h2 { font-size: 1.2rem; font-weight: bold; margin-bottom: 8px; }
         .thick-separator-light { border: none; border-top: 1px solid #ddd; margin: 0; }
         .order-details-link { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; text-decoration: none; color: inherit; font-size: 1rem; }
-        .sticky-track-header { position: sticky; background-color: #ffffff; z-index: 999; padding-bottom: 0 !important; }
+        .sticky-track-header { position: sticky; background-color: #ffffff; z-index: 999; padding-bottom: 0 !important; border-bottom: 1px solid #eee;}
         .track-product-image-container { padding: 16px 0; text-align: left; }
-        .track-product-image { max-width: 80px; max-height: 80px; object-fit: contain; }
+        .track-product-image { max-width: 80px; max-height: 80px; object-fit: contain; cursor: pointer; }
         
-        .amz-scroll-container { display: flex; overflow-x: auto; gap: 12px; padding: 4px 15px; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; }
+        .amz-scroll-container { display: flex; overflow-x: auto; gap: 12px; padding: 16px 15px; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; background: #fff; }
         .amz-scroll-container::-webkit-scrollbar { display: none; }
 
         .amz-btn { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; text-align: center; height: 44px; padding: 0 16px; background-color: #fafafa; border: 1px solid #d5d9d9; border-radius: 8px; box-shadow: 0 2px 5px 0 rgba(213,217,217,0.5); color: #0f1111; text-decoration: none; font-size: 13px; line-height: 16px; font-weight: 400; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; transition: all 0.1s ease; }
 
-        .shipped-with-info { padding: 0 16px 16px 16px; }
+        .shipped-with-info { padding: 0 16px 16px 16px; background: #fff; }
         .shipped-with-info h3 { font-size: 1.2rem; font-weight: bold; margin: 0 0 8px 0; }
         .shipped-with-info p, .shipped-with-info a { font-size: 1rem; margin: 0 0 4px 0; color: var(--amazon-teal); text-decoration: none; }
         
+        /* Animated Tracking Component Styles */
+        .tracking-card { background: #ffffff; width: 100%; padding: 24px 16px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; }
+        #status-text-container { width: 100%; text-align: center; }
+        .status-header { font-size: 18px; font-weight: 700; color: var(--text-color); margin: 0 0 6px 0; }
+        .status-description { font-size: 14px; color: var(--text-color); margin: 0 0 20px 0; }
+        #tracking-timeline-wrapper { width: 100%; display: flex; flex-direction: column; align-items: center; margin-top: 15px; }
+        .timeline-container { position: relative; width: 90%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        
+        .progress-track-bg { position: absolute; top: 50%; left: 0; transform: translateY(-50%); height: 4px; width: 100%; background-color: var(--medium-grey); z-index: 1; border-radius: 2px; }
+        .progress-track-fill { position: absolute; top: 50%; left: 0; transform: translateY(-50%); height: 6px; width: 0%; background-color: var(--amazon-track-blue); z-index: 2; border-radius: 3px; transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .step-node { position: relative; z-index: 3; width: 18px; height: 18px; border-radius: 50%; background-color: #ffffff; border: 2px solid var(--medium-grey); display: flex; align-items: center; justify-content: center; transition: all 0.4s ease; }
+        .step-node.active-completed { background-color: var(--amazon-track-blue); border-color: var(--amazon-track-blue); width: 20px; height: 20px; }
+        .step-node svg { width: 12px; height: 12px; fill: none; stroke: #ffffff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; display: none; }
+        .step-node.active-completed svg { display: block; }
+        
+        .labels-container { width: 95%; display: flex; justify-content: space-between; margin-top: 8px; }
+        .step-label { font-size: 12px; color: var(--text-muted); width: 75px; text-align: center; transition: color 0.3s ease, font-weight 0.3s ease; line-height: 1.2; }
+        .labels-container .step-label:first-child { text-align: left; width: 60px; }
+        .labels-container .step-label:last-child { text-align: right; width: 60px; }
+        .step-label.current-active { color: var(--text-color); font-weight: 700; }
+        
+        /* 5-Star Rating UI */
+        .rating-box { margin-top: 10px; text-align: center; display: none; animation: slideUpFade 0.5s ease forwards; width: 100%; padding: 20px 0; }
+        .rating-text { font-size: 18px; font-weight: 700; color: var(--text-color); margin-bottom: 5px; }
+        .rating-subtext { font-size: 14px; color: var(--text-muted); margin-bottom: 15px; }
+        .stars-container { color: var(--amazon-star-gold); font-size: 42px; letter-spacing: 8px; line-height: 1; cursor: pointer; user-select: none; }
+        .interactive-star { display: inline-block; transition: transform 0.1s; }
+        .interactive-star:active { transform: scale(0.8); }
+        .rating-thanks { display: none; color: var(--amazon-track-green); font-size: 14px; font-weight: bold; margin-top: 15px; animation: slideUpFade 0.3s ease forwards;}
+        @keyframes slideUpFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
         /* Updates Overlay Styles */
         .updates-overlay-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2000; display: none; }
         .updates-overlay-container.visible { display: block; }
@@ -312,35 +361,70 @@
         .updates-overlay-container.visible .updates-sheet { transform: translateY(0); }
         .updates-sheet img { width: 100%; display: block; height: auto; margin-bottom: -1px; }
 
-        /* --- Order Summary Page --- */
-        #order-summary-page .content { background-color: #ffffff; padding: 0 !important; }
-        .os-sub-nav-bar { background-color: #eaeded; padding: 12px 15px; border-bottom: 1px solid #d5d9d9; font-size: 14px; font-weight: 500; cursor: pointer; }
-        .os-content-container { padding: 15px 15px 40px 15px; }
-        .os-section-title { font-weight: 700; font-size: 16px; margin-bottom: 8px; margin-top: 20px; }
-        .os-section-title.first { margin-top: 0; }
-        .os-amz-card { border: 1px solid #d5d9d9; border-radius: 8px; background-color: #ffffff; margin-bottom: 4px; }
-        .os-od-padding { padding: 14px 15px; }
-        .os-od-row { display: flex; justify-content: space-between; font-size: 14px; line-height: 20px; margin-bottom: 2px; }
-        .os-label-grey { color: #565959; }
-        .os-val-black { color: #0f1111; }
-        .os-invoice-row { border-top: 1px solid #d5d9d9; padding: 14px 15px; display: flex; justify-content: space-between; align-items: center; background-color: #fff; border-radius: 0 0 8px 8px; font-size: 14px; cursor: pointer; }
-        .os-chevron { width: 8px; height: 8px; border-right: 2px solid #111; border-top: 2px solid #111; transform: rotate(45deg); }
-        .os-arriving-text { font-size: 17px; font-weight: 700; margin-bottom: 15px; }
-        .os-product-flex { display: flex; gap: 15px; margin-bottom: 15px; }
-        .os-img-box { position: relative; width: 70px; flex-shrink: 0; }
-        .os-img-box img { width: 100%; height: auto; object-fit: contain; }
-        .os-qty-circle { display: none !important; }
-        .os-prod-info { font-size: 14px; line-height: 1.35; }
-        .os-prod-name { font-weight: 700; margin-bottom: 4px; display: block; text-decoration: none; color: inherit; }
-        .os-sold-line { font-size: 12px; color: #565959; margin-bottom: 4px;}
-        .os-blue-link { color: var(--amazon-teal); text-decoration: none; }
-        .os-price-text { font-weight: 700; font-size: 14px; }
-        .os-button-container { display: flex; flex-wrap: wrap; gap: 10px; }
-        .os-amz-action-btn { flex: 1 0 auto; background: #ffffff; border: 1px solid #d5d9d9; border-radius: 100px; height: 38px; padding: 0 16px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 13px; color: #0f1111; box-shadow: 0 2px 5px 0 rgba(213,217,217,0.5); white-space: nowrap; text-decoration: none; cursor: pointer; }
-        .os-info-box { padding: 15px; font-size: 14px; line-height: 20px; }
-        .os-summary-line { display: flex; justify-content: space-between; margin-bottom: 4px; }
-        .os-grand-total { font-weight: 700; font-size: 15px; margin-top: 10px; display: flex; justify-content: space-between; }
-        .os-full-width-image { width: calc(100% + 30px); margin: 20px -15px 0 -15px; display: block; height: auto; }
+        /* --- Order Summary Page Redesign (Accordion Version) --- */
+        #order-summary-page .content { background-color: #eaeded; padding: 0 !important; }
+        #order-summary-page .os-sub-nav-bar { background-color: #f7f7f7; padding: 14px 16px; display: flex; align-items: center; border-bottom: 1px solid var(--border-dark); font-size: 15px; font-weight: 700; color: #0F1111; cursor: pointer; }
+        #order-summary-page .os-content-container { padding: 16px; background-color: #ffffff; }
+        #order-summary-page .page-title { font-size: 24px; font-weight: 700; margin-bottom: 16px; color: #0F1111; margin-top: 0; }
+        #order-summary-page .amz-card { border: 1px solid var(--border-dark); border-radius: 8px; background-color: #FFFFFF; margin-bottom: 24px; overflow: hidden; }
+        #order-summary-page .card-top-section { padding: 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-dark); }
+        #order-summary-page .card-top-section h2 { font-size: 19px; font-weight: 700; margin: 0; }
+        #order-summary-page .card-top-section h2.failed { color: #d00; }
+        #order-summary-page .mini-thumbnail { width: 55px; height: 55px; border: 1px solid var(--border-dark); border-radius: 6px; display: flex; align-items: center; justify-content: center; background-color: #fbfbfb; padding: 2px; }
+        #order-summary-page .mini-thumbnail img { width: 100%; height: 100%; object-fit: contain; }
+        #order-summary-page .card-accordion { padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; font-size: 15px; font-weight: 700; cursor: pointer; background-color: #fff; }
+        #order-summary-page .chevron { width: 10px; height: 10px; border-right: 2px solid #0F1111; border-bottom: 2px solid #0F1111; transition: transform 0.2s ease, margin 0.2s ease; display: inline-block; }
+        #order-summary-page .chevron.up { transform: rotate(225deg); margin-top: 6px; }
+        #order-summary-page .chevron.down { transform: rotate(45deg); margin-bottom: 4px; }
+        #order-summary-page .card-product-section { padding: 16px; border-top: 1px solid var(--border-dark); }
+        #order-summary-page .product-info-row { display: flex; gap: 12px; margin-bottom: 16px; }
+        #order-summary-page .product-image { width: 75px; height: 75px; flex-shrink: 0; border: 1px solid #e7e7e7; border-radius: 6px; background-color: #fbfbfb; display: flex; align-items: center; justify-content: center; padding: 4px; cursor: pointer; }
+        #order-summary-page .product-image img { width: 100%; height: 100%; object-fit: contain; }
+        #order-summary-page .product-details { flex: 1; }
+        #order-summary-page .product-details h3 { font-size: 15px; font-weight: 700; margin: 0 0 4px 0; line-height: 1.3; cursor: pointer; color: inherit; text-decoration: none; }
+        #order-summary-page .product-details .sold-by { font-size: 13px; color: #565959; margin-bottom: 4px; }
+        #order-summary-page .product-details .sold-by a { color: var(--amazon-teal); text-decoration: none; }
+        #order-summary-page .product-details .price { font-size: 14px; color: #0F1111; }
+        #order-summary-page .button-group { display: flex; flex-wrap: wrap; gap: 8px; }
+        #order-summary-page .os-amz-action-btn { padding: 0 14px; height: 32px; border-radius: 100px; font-size: 13px; text-align: center; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; text-decoration: none; color: #0F1111; box-shadow: 0 2px 5px 0 rgba(213,217,217,0.5); }
+        #order-summary-page .btn-yellow { background-color: #FFD814; border: 1px solid #FCD200; }
+        #order-summary-page .btn-white { background-color: #FFFFFF; border: 1px solid var(--border-dark); }
+        #order-summary-page .text-section { margin-bottom: 24px; }
+        #order-summary-page .section-header { font-size: 18px; font-weight: 700; margin: 0 0 6px 0; }
+        #order-summary-page .text-line { font-size: 15px; line-height: 1.4; color: #0F1111; }
+        #order-summary-page .summary-table { margin-top: 12px; width: 100%; max-width: 350px; border-collapse: collapse; }
+        #order-summary-page .summary-row { display: flex; justify-content: space-between; font-size: 15px; margin-bottom: 4px; }
+        #order-summary-page .summary-row.grand-total { font-weight: 700; margin-top: 4px; }
+        #order-summary-page .download-link { display: inline-block; margin-top: 12px; color: var(--amazon-teal); font-size: 15px; text-decoration: none; cursor: pointer; }
+        #order-summary-page .os-full-width-image { width: calc(100% + 32px); margin: 20px -16px 0 -16px; display: block; height: auto; }
+
+        /* --- Printable Order Summary (Invoice Grid Redesign) --- */
+        #invoice-page .content { padding: 0 !important; background-color: #f2f4f8; min-height: 100vh; }
+        .inv-content-wrapper { background-color: #fff; padding: 20px 15px; border-bottom: 1px solid var(--border-dark); padding-bottom: 40px; }
+        .inv-content-wrapper h1 { font-size: 22px; margin: 0 0 15px 0; font-weight: 700; color: #0F1111; }
+        .inv-save-btn { background-color: #ffd814; color: #0f1111; padding: 8px 18px; border-radius: 20px; border: none; font-size: 14px; cursor: pointer; display: inline-block; margin-bottom: 20px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+        .inv-order-meta { font-size: 14px; margin-bottom: 15px; display: flex; align-items: center; color: #0f1111; white-space: nowrap; overflow-x: auto; }
+        .inv-order-meta::-webkit-scrollbar { display: none; }
+        .inv-divider { border-left: 1px solid var(--border-dark); height: 14px; margin: 0 10px; }
+        .inv-card { border: 1px solid var(--border-dark); border-radius: 8px; margin-bottom: 15px; background: #fff; overflow: hidden; }
+        .inv-grid-scroll-wrapper { overflow-x: auto; border-radius: 8px; }
+        .inv-grid-scroll-wrapper::-webkit-scrollbar { display: none; }
+        .inv-grid-container { display: flex; padding: 14px; min-width: 650px; gap: 20px; }
+        .inv-col { flex: 1; font-size: 14px; line-height: 1.4; color: #0F1111; }
+        .inv-col.inv-summary-col { flex: 1.2; }
+        .inv-col h3 { font-size: 14px; margin: 0 0 6px 0; font-weight: 700; color: #0F1111; }
+        .inv-summary-table { width: 100%; font-size: 14px; border-collapse: collapse; }
+        .inv-summary-table td { padding: 2px 0; color: #0F1111; }
+        .inv-summary-table .price { text-align: right; }
+        .inv-product-card { padding: 14px; }
+        .inv-product-header { font-weight: 700; font-size: 16px; margin-bottom: 12px; color: #0F1111; }
+        .inv-product-row { display: flex; gap: 15px; align-items: flex-start; }
+        .inv-product-img { width: 80px; height: 80px; object-fit: contain; flex-shrink: 0; }
+        .inv-product-details { flex: 1; font-size: 14px; }
+        .inv-product-link { color: var(--amazon-teal); text-decoration: none; line-height: 1.3; display: block; margin-bottom: 4px; }
+        .inv-product-seller { color: #565959; font-size: 12px; margin-bottom: 4px; }
+        .inv-product-seller a { color: var(--amazon-teal); text-decoration: none; }
+        .inv-product-price { font-size: 14px; font-weight: 400; color: #0f1111; }
 
         /* --- Admin Panel --- */
         #admin-page .content { padding: 0; background-color: #f8f9fa; }
@@ -364,7 +448,6 @@
         .item-list-admin-card .item-info-admin p { margin: 0; font-weight: 600; }
         .item-list-admin-card .item-actions { display: flex; gap: 8px; flex-wrap: wrap; }
         .item-list-admin-card .item-actions button { padding: 8px 10px; border-radius: 5px; border: none; cursor: pointer; font-size: 0.8rem; color: #fff; }
-        .admin-edit-btn { background-color: var(--primary-blue); }
         .admin-delete-btn { background-color: var(--danger-red); }
         .admin-duplicate-btn { background-color: var(--success-green); }
         
@@ -463,30 +546,6 @@
         .admin-button-overlay.primary { background-color: var(--primary-blue); color: white; }
         .admin-button-overlay.secondary { background-color: #6c757d; color: white; }
         .save-feedback { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(100px); background-color: var(--success-green); color: white; padding: 10px 20px; border-radius: 6px; opacity: 0; transition: all 0.4s ease; z-index: 101; }
-
-        /* --- INVOICE PAGE STYLES --- */
-        .invoice-card { width: 900px; min-width: 900px; background-color: #ffffff; margin: 20px auto; border: 1px solid #d5d9d9; padding: 18px 20px; box-sizing: border-box; font-family: "Arial", sans-serif; color: #333333; }
-        .invoice-card h2, .invoice-card p, .invoice-card h5 { margin-top: 0; margin-bottom: 0; }
-        .invoice-header { margin-bottom: 10px; }
-        .invoice-header h2 { text-align: left; margin-bottom: 10px; }
-        .invoice-meta-line { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 14px; }
-        .invoice-divider { border: 0; border-top: 1px solid #e7e7e7; margin: 10px 0; }
-        .invoice-grid { display: grid; grid-template-columns: 1fr 1fr 0.8fr; gap: 20px; font-size: 13px; margin-bottom: 20px; }
-        .invoice-col-label { font-weight: bold; font-size: 13px; margin-bottom: 5px; display: block; }
-        .invoice-summary-table { width: 100%; border-collapse: collapse; }
-        .invoice-summary-table td { padding: 2px 0; }
-        .invoice-summary-table .price-col { text-align: right; }
-        .invoice-product-section { border-top: 1px solid #e7e7e7; padding-top: 10px; }
-        .invoice-arrival-text { color: #007600; font-weight: bold; font-size: 17px; margin-bottom: 10px; display: block; }
-        .invoice-product-row { display: flex; align-items: flex-start; }
-        .invoice-img-container { position: relative; margin-right: 15px; }
-        .invoice-img-container img { width: 80px; height: 80px; object-fit: contain; }
-        .invoice-badge { display: none !important; }
-        .invoice-product-details { display: flex; flex-direction: column; }
-        .invoice-product-link { color: var(--amazon-teal); text-decoration: none; font-size: 13px; font-weight: bold; margin-bottom: 2px; }
-        .invoice-product-link:hover { text-decoration: underline; }
-        .invoice-seller-text { color: #565959; font-size: 11px; margin-bottom: 2px; }
-        .invoice-price-text { color: #B12704; font-weight: bold; font-size: 13px; }
 
         /* --- BILL INVOICE PAGE STYLES --- */
         #bill-invoice-page .bill-wrapper { width: 850px; min-width: 850px; background-color: #fff; margin: 0 auto; padding: 30px; box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; color: #000; position: relative; transform-origin: top left; }
@@ -678,9 +737,7 @@
 
 <header class="fixed-header">
     <div id="back-tap-area"></div>
-    <a href="#home">
-        <img src="https://ik.imagekit.io/5lz94dan6e/Screenshot_20260104_135935_Amazon(1).jpg" alt="Header Image" id="header-img">
-    </a>
+    <img src="https://ik.imagekit.io/5lz94dan6e/Screenshot_20260104_135935_Amazon(1).jpg" alt="Header Image" id="header-img">
 </header>
 
 <div id="home-page" class="page">
@@ -762,7 +819,7 @@
         </div>
 
         <div class="full-width-image">
-            <img src="https://ik.imagekit.io/goldencodes/Picsart_25-11-09_02-08-25-361.jpg?updatedAt=1762634330892" alt="Decorative Image">
+            <img src="https://ik.imagekit.io/5lz94dan6e/Picsart_26-07-12_08-00-55-540.jpg?updatedAt=1783823655925" alt="Decorative Image">
         </div>
 
         <div class="module help-module">
@@ -779,7 +836,7 @@
         </div>
 
         <div class="admin-panel-link">
-            <img src="https://ik.imagekit.io/goldencodes/Picsart_25-11-09_03-04-23-916.jpg?updatedAt=1762637690349" alt="Sub Header Image">
+            <img src="https://ik.imagekit.io/5lz94dan6e/Picsart_26-07-12_08-16-51-503.jpg?updatedAt=1783824453957" alt="Sub Header Image">
         </div>
 
         <div class="module">
@@ -824,7 +881,6 @@
                 <span id="admin-user-id">ID: --</span>
             </div>
             <div class="admin-main-actions">
-                <button id="add-new-item-btn" class="admin-button">Add Product</button>
                 <button id="theme-btn" class="admin-button" style="background-color: #6610f2;">Themes</button>
                 <button id="refresh-data-btn" class="admin-button secondary">Refresh</button>
                 <button id="logout-btn" class="admin-button" style="background-color: var(--danger-red);">Log Out</button>
@@ -834,7 +890,7 @@
         <div id="manage-items-tab" class="admin-tab-content active" style="display:block;">
             <section id="purchase-history-section">
                 <div class="admin-section-header">
-                    <h2>Orders List</h2>
+                    <h2>Orders List (Read Only)</h2>
                 </div>
                 <ul id="purchase-history-admin-list" class="item-list-admin" data-type="purchaseHistory"></ul>
             </section>
@@ -842,11 +898,13 @@
     </div>
 </div>
 
-
 <div id="image-page" class="page">
     <div class="content" id="image-page-content"></div>
 </div>
 
+<!-- =========================================================================================
+     TRACK PACKAGE PAGE HTML (Includes Animated Component & 5-Star Rating)
+     ========================================================================================= -->
 <div id="track-page" class="page">
     <div class="content" id="track-page-content"></div>
 </div>
@@ -855,8 +913,8 @@
     <div class="content" id="order-summary-content"></div>
 </div>
 
-<div id="invoice-page" class="page" style="overflow-x: auto; background-color: #eaeded;">
-    <div class="content" id="invoice-page-content" style="padding: 0; min-height: 100vh;"></div>
+<div id="invoice-page" class="page">
+    <div class="content" id="invoice-page-content"></div>
 </div>
 
 <div id="bill-invoice-page" class="page" style="overflow-x: hidden; background-color: #eaeded;">
@@ -945,199 +1003,81 @@
     </div>
 </div>
 
-<div class="admin-modal-overlay" id="item-modal">
-    <div class="admin-modal">
-        <header class="modal-header">
-            <div style="display:flex; align-items:center;">
-                <h2 id="modal-title">Add Product</h2>
-            </div>
-            <div style="display:flex; align-items:center;">
-                 <div class="wallet-wrapper">
-                     <span id="wallet-btn" title="Secure Wallet">🧟‍♂️</span>
-                 </div>
-                 <button class="modal-close-btn" id="modal-close-btn">&times;</button>
-            </div>
-        </header>
-        <form class="modal-body" id="item-form">
-            <input type="hidden" id="editingItemId" name="editingItemId">
-            
-            <button type="button" id="ai-autofill-btn" class="admin-button" style="background-color: #6f42c1; width: 100%; margin-bottom: 15px; font-size: 16px; padding: 12px;">✨ AI Auto-Fill Missing Data</button>
-
-            <details class="form-section-accordion" open id="accordion-basic">
-                <summary>Basic Info</summary>
-                <div class="form-section-accordion-content">
-                    <div class="form-input-group" id="itemNameGroup">
-                        <label for="itemName">Product Name</label>
-                        <input type="text" id="itemName" name="itemName">
-                    </div>
-                    <div class="form-input-group">
-                        <label for="itemImage">Image URL</label>
-                        <input type="url" id="itemImage" name="itemImage" required>
-                        <a href="gallery.html" class="get-link-btn">Get image link</a>
-                    </div>
-                </div>
-            </details>
-
-            <details class="form-section-accordion" id="accordion-delivery">
-                <summary>Delivery & Dates</summary>
-                <div class="form-section-accordion-content">
-                    <div class="form-input-group">
-                        <label for="deliveryStatus">Delivery Status Text</label>
-                        <select id="deliveryStatus" name="deliveryStatus">
-                            <option>Delivered on</option>
-                            <option>Delivered Today</option>
-                            <option>Arriving tomorrow</option>
-                            <option>Arriving today</option>
-                            <option>Arriving</option>
-                            <option value="Cancelled">Cancelled</option>
-                            <option value="Payment Failed">Payment Failed</option>
-                        </select>
-                    </div>
-                    <div class="form-input-group"><label for="orderDate">Order Date</label><input type="date" id="orderDate" name="orderDate"></div>
-                    <div class="form-input-group"><label for="deliveryDate">Delivery Date</label><input type="date" id="deliveryDate" name="deliveryDate"></div>
-                    <div class="form-input-group" id="weekNameGroup" style="display:none;">
-                        <label for="weekName">Week Name (Visible only if Status is 'Arriving')</label>
-                        <select id="weekName" name="weekName">
-                            <option value="">-- Select Day --</option>
-                            <option value="Monday">Monday</option>
-                            <option value="Tuesday">Tuesday</option>
-                            <option value="Wednesday">Wednesday</option>
-                            <option value="Thursday">Thursday</option>
-                            <option value="Friday">Friday</option>
-                            <option value="Saturday">Saturday</option>
-                            <option value="Sunday">Sunday</option>
-                        </select>
-                    </div>
-                </div>
-            </details>
-
-            <details class="form-section-accordion" id="accordion-tracking">
-                <summary>Tracking Details</summary>
-                <div class="form-section-accordion-content">
-                    <div class="form-input-group"><label for="shippingAddress">Shipping Address (Leave empty for AI Auto-Address)</label><textarea id="shippingAddress" name="shippingAddress" rows="3"></textarea></div>
-                    <div class="form-input-group">
-                        <label for="progressStepImageUrl">Progress/Map Image Step</label>
-                        <select id="progressStepImageUrl" name="progressStepImageUrl">
-                            <option value="https://ik.imagekit.io/5lz94dan6e/Screenshot_20251203_200923_Amazon.jpg?updatedAt=1764772917354">Just Ordered</option>
-                            <option value="https://ik.imagekit.io/5lz94dan6e/Screenshot_20251204_090440_Amazon.jpg?updatedAt=1764819298084">Shipped</option>
-                            <option value="https://ik.imagekit.io/5lz94dan6e/Screenshot_20251121_111917_Amazon.jpg?updatedAt=1763704241266">Out of Delivery</option>
-                            <option value="https://ik.imagekit.io/5lz94dan6e/Screenshot_20251202_190436_Chrome.jpg?updatedAt=1764682507702">Delivered</option>
-                        </select>
-                    </div>
-                </div>
-            </details>
-            
-            <details class="form-section-accordion" id="accordion-summary">
-                <summary>Order Summary Info</summary>
-                <div class="form-section-accordion-content">
-                    <div class="form-input-group"><label for="sellerInfo">Seller Info</label><input type="text" id="sellerInfo" name="sellerInfo"></div>
-                    <div class="form-input-group"><label for="price">Price (e.g. 1799.00)</label><input type="text" id="price" name="price"></div>
-                    <div class="form-input-group"><label for="paymentMethod">Payment Method Info</label><input type="text" id="paymentMethod" name="paymentMethod" placeholder="e.g. American Express xx-xxxx-1234 Credit Card"></div>
-                </div>
-            </details>
-
-            <details class="form-section-accordion" id="accordion-ai">
-                <summary>Advanced AI & Tax Info</summary>
-                <div class="form-section-accordion-content">
-                    <div class="form-input-group"><label for="taxRate">Tax Rate (%)</label><input type="number" id="taxRate" name="taxRate" placeholder="e.g. 18"></div>
-                    <div class="form-input-group"><label for="shippingFee">Shipping Fee (Rs)</label><input type="number" id="shippingFee" name="shippingFee" placeholder="e.g. 40"></div>
-                    <div class="form-input-group"><label for="platformFee">Platform Fee (Rs)</label><input type="number" id="platformFee" name="platformFee" placeholder="e.g. 3"></div>
-                    <div class="form-input-group"><label for="panNo">Seller PAN No</label><input type="text" id="panNo" name="panNo"></div>
-                    <div class="form-input-group"><label for="gstNo">Seller GST No</label><input type="text" id="gstNo" name="gstNo"></div>
-                </div>
-            </details>
-
-            <div id="wallet-fields" style="display:none; border: 2px solid var(--primary-blue); padding: 10px; border-radius: 8px; margin-top: 15px; background: #e6f3ff;">
-                <h4>Wallet Secured Fields</h4>
-                <div class="form-input-group"><label for="orderNumber">Order Number (Unique)</label><input type="text" id="orderNumber" name="orderNumber"></div>
-                <div class="form-input-group"><label for="trackingId">Tracking ID (Random if Empty)</label><input type="text" id="trackingId" name="trackingId"></div>
-                <div class="form-input-group">
-                    <label for="itemImagePageUrl">Real Amazon Product Link</label>
-                    <input type="url" id="itemImagePageUrl" name="itemImagePageUrl">
-                </div>
-                <div class="form-input-group"><label for="shareTrackingLink">Share Tracking Link</label><input type="url" id="shareTrackingLink" name="shareTrackingLink"></div>
-                <div class="form-input-group">
-                    <label for="updatesOverlayImg">Tracking Updates Overlay Image URL</label>
-                    <input type="url" id="updatesOverlayImg" name="updatesOverlayImg">
-                </div>
-            </div>
-
-        </form>
-        <footer class="modal-footer">
-            <div id="premium-toggle-container" style="display:flex; align-items:center; width:100%; justify-content:center; margin-bottom:10px;">
-                <label class="switch">
-                    <input type="checkbox" id="premium-toggle">
-                    <span class="slider round"></span>
-                </label>
-                <span style="margin-left:10px; font-weight:bold; font-size:0.9rem;">Premium Order</span>
-            </div>
-            
-            <button class="admin-button" style="background-color: #6c757d;" id="modal-cancel-btn">Cancel</button>
-            <button class="admin-button secondary" id="modal-save-btn">Normal Order</button>
-        </footer>
-    </div>
-</div>
-
 <footer class="fixed-footer">
     <div class="footer-grid-overlay">
-        <!-- THIS IS THE NEW HOME BUTTON THAT OPENS THE AMAZON APP INTENT -->
+        <!-- ZONES UPDATE -->
         <div class="footer-zone" onclick="triggerAmazonIntent(true)"></div>
+        <div class="footer-zone" onclick="window.location.hash='#home'"></div>
         <div class="footer-zone"></div>
-        <div class="footer-zone" onclick="window.location.href='wallet.html'"></div>
-        <div class="footer-zone" onclick="window.location.href='cart.html'"></div>
-        <div class="footer-zone" onclick="window.location.href='menu.html'"></div>
-        <div class="footer-zone" onclick="window.location.href='ai.html'"></div>
+        <div class="footer-zone"></div>
+        <div class="footer-zone"></div>
+        <div class="footer-zone"></div>
     </div>
     <img src="https://ik.imagekit.io/5lz94dan6e/Screenshot_20260104_135943_Amazon(1).jpg" alt="Footer Image" id="footer-img">
 </footer>
 
 <script>
+// Deep Link Intent Extractor Logic
+window.openAmazonApp = function(e, url) {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
+    if (!url || url === 'undefined' || url === 'null') return;
+    
+    let intentUrl = "";
+    // Regex to extract ASIN (10 character alphanumeric after /dp/, /o/, /product/, etc.)
+    let asinMatch = url.match(/\/?(?:dp|o|asin|product)\/([a-zA-Z0-9]{10})/i);
+    
+    if (asinMatch && asinMatch[1]) {
+        let asin = asinMatch[1];
+        // Action VIEW deep link specifically targeting Amazon app router
+        intentUrl = "intent://www.amazon.in/dp/" + asin + "#Intent;scheme=https;package=in.amazon.mShop.android.shopping;action=android.intent.action.VIEW;end;";
+    } else {
+        // Fallback for short URLs or complex URLs
+        try {
+            let urlObj = new URL(url);
+            let cleanUrl = urlObj.host + urlObj.pathname + urlObj.search + urlObj.hash;
+            intentUrl = "intent://" + cleanUrl + "#Intent;scheme=https;package=in.amazon.mShop.android.shopping;action=android.intent.action.VIEW;end;";
+        } catch(err) {
+            return; // Exit silently if URL is invalid
+        }
+    }
+
+    var ua = navigator.userAgent.toLowerCase();
+    if (ua.indexOf("android") > -1) {
+        window.top.location.href = intentUrl;
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const GAS_URL = "https://script.google.com/macros/s/AKfycbxI8uxZZMJXaQ90_An_DXAKF6gqzxgE1yA3t5KH6x72cLqQywm4vr7g6pdOQ8cWXkxz/exec";
+    const IMG_ORDERED = "https://ik.imagekit.io/5lz94dan6e/Screenshot_20251203_200923_Amazon.jpg?updatedAt=1764772917354"; 
 
-    // --- AMAZON APP INTENT (OLD METHOD RESTORED - ONLY ON CLICK) ---
     window.triggerAmazonIntent = function(force = false) {
-        if (!force) return; // ONLY trigger when explicitly clicked
-
+        if (!force) return; 
         var fallbackUrl = "https://www.amazon.in/"; 
         var package = "in.amazon.mShop.android.shopping"; 
         var intentUrl = "intent://www.amazon.in/#Intent;scheme=https;package=" + package + ";S.browser_fallback_url=" + encodeURIComponent(fallbackUrl) + ";end";
-        
         var ua = navigator.userAgent.toLowerCase();
-        
-        if (ua.indexOf("android") > -1) {
-            window.top.location.href = intentUrl;
-        } else {
-            window.location.href = fallbackUrl;
-        }
+        if (ua.indexOf("android") > -1) { window.top.location.href = intentUrl; } 
+        else { window.location.href = fallbackUrl; }
     };
 
     function nativeShare(text) {
-       if (window.FlutterShare) {
-           window.FlutterShare.postMessage(text);
-       } else if (navigator.share) {
-           navigator.share({ text: text }).catch(console.error);
-       } else {
-           try { navigator.clipboard.writeText(text); alert('Link copied to clipboard!'); } catch(e){}
-       }
+       if (window.FlutterShare) { window.FlutterShare.postMessage(text); } 
+       else if (navigator.share) { navigator.share({ text: text }).catch(console.error); } 
+       else { try { navigator.clipboard.writeText(text); alert('Link copied to clipboard!'); } catch(e){} }
     }
     
     if (localStorage.getItem('savedCredentials')) {
-        if (window.location.hash !== '#home' && window.location.hash !== '') {
-             history.replaceState(null, null, ' '); 
-        }
+        if (window.location.hash !== '#home' && window.location.hash !== '') { history.replaceState(null, null, ' '); }
         window.location.hash = '#home';
     }
 
     let currentUser = { id: null, rs: 0, orderId: null };
-
     let itemToDeleteId = null;
     let itemToDeleteType = null;
     
-    if ('scrollRestoration' in history) {
-        history.scrollRestoration = 'manual';
-    }
+    if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
     let isBackNavigation = false;
     const pageScrollPositions = {};
     window.addEventListener('popstate', () => { isBackNavigation = true; });
@@ -1149,7 +1089,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setValue: (key, value) => localStorage.setItem(key, value),
     };
 
-    // --- FAIL-SAFE BACKGROUND SYNC SYSTEM ---
     const SyncManager = {
         queueKey: 'syncQueue',
         isProcessing: false,
@@ -1183,9 +1122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         flush: function() {
             let q = DB.get(this.queueKey) || [];
             if (q.length > 0 && navigator.sendBeacon) {
-                q.forEach(item => {
-                    navigator.sendBeacon(GAS_URL, JSON.stringify(item.payload));
-                });
+                q.forEach(item => { navigator.sendBeacon(GAS_URL, JSON.stringify(item.payload)); });
                 DB.set(this.queueKey, []);
             }
         }
@@ -1194,7 +1131,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('beforeunload', () => SyncManager.flush());
     window.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') SyncManager.flush(); });
 
-    // --- DOWNLOAD SHEET LOGIC ---
     let currentDownloadSelection = 'invoice';
     let currentDownloadOrderId = null;
 
@@ -1215,45 +1151,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const invoiceRadio = document.getElementById('radio-invoice');
         
         if (option === 'summary') {
-            summaryRadio.classList.remove('inactive');
-            summaryRadio.classList.add('active');
+            summaryRadio.classList.remove('inactive'); summaryRadio.classList.add('active');
             summaryRadio.querySelector('.radio-dot').classList.remove('hidden');
-            
-            invoiceRadio.classList.remove('active');
-            invoiceRadio.classList.add('inactive');
+            invoiceRadio.classList.remove('active'); invoiceRadio.classList.add('inactive');
             invoiceRadio.querySelector('.radio-dot').classList.add('hidden');
         } else {
-            invoiceRadio.classList.remove('inactive');
-            invoiceRadio.classList.add('active');
+            invoiceRadio.classList.remove('inactive'); invoiceRadio.classList.add('active');
             invoiceRadio.querySelector('.radio-dot').classList.remove('hidden');
-            
-            summaryRadio.classList.remove('active');
-            summaryRadio.classList.add('inactive');
+            summaryRadio.classList.remove('active'); summaryRadio.classList.add('inactive');
             summaryRadio.querySelector('.radio-dot').classList.add('hidden');
         }
     }
     
-    document.getElementById('sheet-close-btn').addEventListener('click', () => {
-        document.getElementById('download-sheet-overlay').style.display = 'none';
-    });
-    
-    document.getElementById('download-sheet-overlay').addEventListener('click', (e) => {
-        if(e.target.id === 'download-sheet-overlay') {
-            document.getElementById('download-sheet-overlay').style.display = 'none';
-        }
-    });
-
+    document.getElementById('sheet-close-btn').addEventListener('click', () => { document.getElementById('download-sheet-overlay').style.display = 'none'; });
+    document.getElementById('download-sheet-overlay').addEventListener('click', (e) => { if(e.target.id === 'download-sheet-overlay') { document.getElementById('download-sheet-overlay').style.display = 'none'; } });
     document.getElementById('download-action-btn').addEventListener('click', () => {
         document.getElementById('download-sheet-overlay').style.display = 'none';
-        if (currentDownloadSelection === 'summary') {
-            window.location.hash = `#invoice-${currentDownloadOrderId}`;
-        } else {
-            window.location.hash = `#bill-invoice-${currentDownloadOrderId}`;
-        }
+        if (currentDownloadSelection === 'summary') { window.location.hash = `#invoice-${currentDownloadOrderId}`; } 
+        else { window.location.hash = `#bill-invoice-${currentDownloadOrderId}`; }
     });
 
-
-    // --- THEME MANAGER LOGIC ---
     let activeThemeConfig = {
         homeHeader: 'https://ik.imagekit.io/5lz94dan6e/Screenshot_20260104_135935_Amazon(1).jpg',
         otherHeader: 'https://ik.imagekit.io/5lz94dan6e/Picsart_26-01-04_14-06-02-934(1).jpg',
@@ -1269,47 +1186,24 @@ document.addEventListener('DOMContentLoaded', () => {
     function initializeThemes() {
         let presets = DB.get('themePresets');
         if (presets.length === 0) {
-            presets.push({
-                id: 'default-theme',
-                name: 'Default Theme',
-                homeHeader: activeThemeConfig.homeHeader,
-                otherHeader: activeThemeConfig.otherHeader,
-                footer: activeThemeConfig.footer,
-                subHeader: activeThemeConfig.subHeader,
-                trackBottom: activeThemeConfig.trackBottom,
-                summaryBottom: activeThemeConfig.summaryBottom,
-                detailAd: activeThemeConfig.detailAd,
-                signImg: activeThemeConfig.signImg
-            });
+            presets.push({ id: 'default-theme', name: 'Default Theme', ...activeThemeConfig });
             DB.set('themePresets', presets);
         }
-        
         const savedTheme = JSON.parse(localStorage.getItem('activeTheme'));
-        if (savedTheme) {
-            applyTheme(savedTheme, false); 
-        }
+        if (savedTheme) { applyTheme(savedTheme, false); }
     }
 
     function applyTheme(theme, save = true) {
         activeThemeConfig = { ...activeThemeConfig, ...theme };
-        
         const footerImg = document.getElementById('footer-img');
         if(footerImg) footerImg.src = activeThemeConfig.footer;
-
         const subHeaderImg = document.getElementById('sub-header-img');
         if(subHeaderImg) subHeaderImg.src = activeThemeConfig.subHeader;
-
         const headerImg = document.getElementById('header-img');
         const activePage = document.querySelector('.page.active');
-        if (activePage && activePage.id === 'home-page') {
-            headerImg.src = activeThemeConfig.homeHeader;
-        } else {
-            headerImg.src = activeThemeConfig.otherHeader;
-        }
-
-        if (save) {
-            localStorage.setItem('activeTheme', JSON.stringify(activeThemeConfig));
-        }
+        if (activePage && activePage.id === 'home-page') { headerImg.src = activeThemeConfig.homeHeader; } 
+        else { headerImg.src = activeThemeConfig.otherHeader; }
+        if (save) { localStorage.setItem('activeTheme', JSON.stringify(activeThemeConfig)); }
         setTimeout(adjustLayoutForAllPages, 100);
     }
 
@@ -1323,84 +1217,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const isSelected = activeTheme && activeTheme.id === theme.id;
             const div = document.createElement('div');
             div.className = `theme-card ${isSelected ? 'active' : ''}`;
-            
-            const buttonsHtml = `
-                <div style="display:flex; gap: 5px;">
-                     <button class="admin-edit-btn" style="padding:4px 8px; font-size:10px;">Edit</button>
-                     <button class="admin-delete-btn" style="padding:4px 8px; font-size:10px;">Delete</button>
-                </div>
-            `;
-            
             div.innerHTML = `
                 <div class="theme-info" style="flex-grow:1;">
                     <div class="theme-preview-color" style="background-image: url('${theme.homeHeader}')"></div>
                     <span>${theme.name}</span>
                 </div>
-                ${buttonsHtml}
             `;
+            div.addEventListener('click', (e) => { if(e.target.tagName !== 'BUTTON') { applyTheme(theme); renderThemeList(); } });
             
-            div.addEventListener('click', (e) => {
-                if(e.target.tagName !== 'BUTTON') {
-                    applyTheme(theme);
-                    renderThemeList(); 
-                }
-            });
-            
-            const deleteBtn = div.querySelector('.admin-delete-btn');
-            deleteBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if(confirm(`Delete theme "${theme.name}"?`)) {
-                    if (theme.id === 'default-theme') {
-                        alert("Cannot delete default theme entirely, but interface logic added as requested.");
-                        return;
-                    }
-                    const newPresets = presets.filter(p => p.id !== theme.id);
-                    DB.set('themePresets', newPresets);
-                    
-                    // Force immediate sync
-                    SyncManager.enqueue({ action: 'backupThemes', themes: newPresets });
-                    SyncManager.process();
-                    
-                    if (activeThemeConfig.id === theme.id) {
-                        applyTheme(newPresets[0]);
-                    }
-                    renderThemeList();
-                }
-            });
-            
-            const editBtn = div.querySelector('.admin-edit-btn');
-            editBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                document.getElementById('new-theme-name').value = theme.name || '';
-                document.getElementById('new-theme-home-header').value = theme.homeHeader || '';
-                document.getElementById('new-theme-other-header').value = theme.otherHeader || '';
-                document.getElementById('new-theme-footer').value = theme.footer || '';
-                document.getElementById('new-theme-sub-header').value = theme.subHeader || '';
-                document.getElementById('new-theme-track-bottom').value = theme.trackBottom || '';
-                document.getElementById('new-theme-summary-bottom').value = theme.summaryBottom || '';
-                document.getElementById('new-theme-detail-ad').value = theme.detailAd || '';
-                document.getElementById('new-theme-sign-img').value = theme.signImg || '';
-                
-                document.getElementById('add-theme-form').classList.add('visible');
-            });
-
             container.appendChild(div);
         });
     }
 
-    document.getElementById('theme-btn').addEventListener('click', () => {
-        document.getElementById('theme-manager-modal').classList.add('visible');
-        renderThemeList();
-        adjustLayoutForAllPages();
-    });
-    document.getElementById('theme-modal-close-btn').addEventListener('click', () => {
-        document.getElementById('theme-manager-modal').classList.remove('visible');
-    });
-    
-    document.getElementById('open-add-theme-form').addEventListener('click', () => {
-        const form = document.getElementById('add-theme-form');
-        form.classList.toggle('visible');
-    });
+    document.getElementById('theme-btn').addEventListener('click', () => { document.getElementById('theme-manager-modal').classList.add('visible'); renderThemeList(); adjustLayoutForAllPages(); });
+    document.getElementById('theme-modal-close-btn').addEventListener('click', () => { document.getElementById('theme-manager-modal').classList.remove('visible'); });
+    document.getElementById('open-add-theme-form').addEventListener('click', () => { document.getElementById('add-theme-form').classList.toggle('visible'); });
 
     document.getElementById('save-new-theme-btn').addEventListener('click', () => {
         const name = document.getElementById('new-theme-name').value;
@@ -1408,58 +1239,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const hOther = document.getElementById('new-theme-other-header').value;
         const footer = document.getElementById('new-theme-footer').value;
         const sub = document.getElementById('new-theme-sub-header').value;
-        const trackB = document.getElementById('new-theme-track-bottom').value;
-        const sumB = document.getElementById('new-theme-summary-bottom').value;
-        const detAd = document.getElementById('new-theme-detail-ad').value;
-        const signI = document.getElementById('new-theme-sign-img').value;
-
-        if(!name || !hHome || !hOther || !footer || !sub) {
-            alert("Basic header/footer fields are required");
-            return;
-        }
+        if(!name || !hHome || !hOther || !footer || !sub) { alert("Basic header/footer fields are required"); return; }
 
         const newTheme = {
-            id: Date.now().toString(),
-            name: name,
-            homeHeader: hHome,
-            otherHeader: hOther,
-            footer: footer,
-            subHeader: sub,
-            trackBottom: trackB || activeThemeConfig.trackBottom,
-            summaryBottom: sumB || activeThemeConfig.summaryBottom,
-            detailAd: detAd || activeThemeConfig.detailAd,
-            signImg: signI || activeThemeConfig.signImg
+            id: Date.now().toString(), name: name, homeHeader: hHome, otherHeader: hOther, footer: footer, subHeader: sub,
+            trackBottom: document.getElementById('new-theme-track-bottom').value || activeThemeConfig.trackBottom,
+            summaryBottom: document.getElementById('new-theme-summary-bottom').value || activeThemeConfig.summaryBottom,
+            detailAd: document.getElementById('new-theme-detail-ad').value || activeThemeConfig.detailAd,
+            signImg: document.getElementById('new-theme-sign-img').value || activeThemeConfig.signImg
         };
 
         const presets = DB.get('themePresets');
         const existingIdx = presets.findIndex(p => p.name === name);
-        if(existingIdx > -1) {
-             presets[existingIdx] = newTheme;
-        } else {
-             presets.push(newTheme);
-        }
-        
+        if(existingIdx > -1) { presets[existingIdx] = newTheme; } else { presets.push(newTheme); }
         DB.set('themePresets', presets);
-        
-        // Force immediate sync
         SyncManager.enqueue({ action: 'backupThemes', themes: presets });
-        SyncManager.process();
-        
         showCustomAlert("Theme Saved to Cloud!");
-        
         document.getElementById('add-theme-form').classList.remove('visible');
         renderThemeList();
     });
 
-    const IMG_ORDERED = "https://ik.imagekit.io/5lz94dan6e/Screenshot_20251203_200923_Amazon.jpg?updatedAt=1764772917354";
-
     const DEFAULT_KEEP_SHOPPING = [
-        "https://ik.imagekit.io/5lz94dan6e/Picsart_26-01-02_20-51-49-445.png",
-        "https://ik.imagekit.io/5lz94dan6e/Picsart_26-01-02_20-53-00-740.png",
-        "https://ik.imagekit.io/5lz94dan6e/Picsart_26-01-02_20-53-32-669.png",
-        "https://ik.imagekit.io/5lz94dan6e/Picsart_26-01-02_20-52-24-288.png",
-        "https://ik.imagekit.io/5lz94dan6e/Picsart_25-11-30_12-09-30-746.png?updatedAt=1764484854478",
-        "https://ik.imagekit.io/5lz94dan6e/Picsart_25-12-24_16-51-25-624.png?updatedAt=1766575312821",
+        "https://ik.imagekit.io/5lz94dan6e/Picsart_26-01-02_20-51-49-445.png", "https://ik.imagekit.io/5lz94dan6e/Picsart_26-01-02_20-53-00-740.png",
+        "https://ik.imagekit.io/5lz94dan6e/Picsart_26-01-02_20-53-32-669.png", "https://ik.imagekit.io/5lz94dan6e/Picsart_26-01-02_20-52-24-288.png",
+        "https://ik.imagekit.io/5lz94dan6e/Picsart_25-11-30_12-09-30-746.png?updatedAt=1764484854478", "https://ik.imagekit.io/5lz94dan6e/Picsart_25-12-24_16-51-25-624.png?updatedAt=1766575312821",
         "https://ik.imagekit.io/5lz94dan6e/Picsart_25-12-26_19-52-05-959.png?updatedAt=1766758990032"
     ];
 
@@ -1470,10 +1273,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function initializeDefaultData() {
         if (!localStorage.getItem('initialized')) {
-            DB.set('buyAgainItems', []); 
-            DB.set('purchaseHistoryItems', []);
-            DB.set('keepShopping', DEFAULT_KEEP_SHOPPING); 
-            DB.set('yourLists', DEFAULT_LISTS);
+            DB.set('buyAgainItems', []); DB.set('purchaseHistoryItems', []);
+            DB.set('keepShopping', DEFAULT_KEEP_SHOPPING); DB.set('yourLists', DEFAULT_LISTS);
             localStorage.setItem('initialized', 'true');
         } else {
             if(DB.get('keepShopping').length === 0) DB.set('keepShopping', DEFAULT_KEEP_SHOPPING);
@@ -1486,22 +1287,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
         const dayIndex = days.indexOf(dayName.toLowerCase());
         if (dayIndex === -1) return new Date(); 
-
-        const today = new Date();
-        const resultDate = new Date();
+        const today = new Date(); const resultDate = new Date();
         resultDate.setDate(today.getDate() + (dayIndex + 7 - today.getDay()) % 7);
-        if (today.getDay() === dayIndex) {
-            resultDate.setDate(resultDate.getDate() + 7);
-        }
+        if (today.getDay() === dayIndex) { resultDate.setDate(resultDate.getDate() + 7); }
         return resultDate;
     }
 
     function calculateDisplayStatus(item) {
         const statusText = item.deliveryStatusText || 'Delivered on';
         if (statusText === 'Arriving') {
-            if (item.weekName) {
-                return `Arriving ${item.weekName}`;
-            } else if (item.deliveryDate) {
+            if (item.weekName) { return `Arriving ${item.weekName}`; } 
+            else if (item.deliveryDate) {
                 const d = new Date(item.deliveryDate);
                 const userTimezoneOffset = d.getTimezoneOffset() * 60000;
                 const adjustedDate = new Date(d.getTime() + userTimezoneOffset);
@@ -1514,11 +1310,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (['Delivered on', 'Arriving on'].includes(statusText)) {
              const hideDateStatuses = ['Arriving', 'Arriving today', 'Arriving tomorrow', 'Delivered Today', 'Cancelled', 'Payment Failed'];
              const shouldHideDate = hideDateStatuses.some(s => statusText.toLowerCase() === s.toLowerCase());
-             if (!shouldHideDate && item.deliveryDate) {
-                 return `${statusText} ${formatDate(item.deliveryDate)}`;
-             } else {
-                 return statusText.replace(' on', '');
-             }
+             if (!shouldHideDate && item.deliveryDate) { return `${statusText} ${formatDate(item.deliveryDate)}`; } 
+             else { return statusText.replace(' on', ''); }
         }
         return statusText;
     }
@@ -1533,39 +1326,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function ensureWatermarkElement() {
         let overlay = document.getElementById('watermark-overlay');
-        if (!overlay) {
-            overlay = document.createElement('div');
-            overlay.id = 'watermark-overlay';
-            document.body.appendChild(overlay);
-        }
+        if (!overlay) { overlay = document.createElement('div'); overlay.id = 'watermark-overlay'; document.body.appendChild(overlay); }
         return overlay;
     }
 
     function renderWatermark(text, forceRender = false) {
         const overlay = ensureWatermarkElement();
-        if (!text || text.trim() === "") {
-            overlay.style.display = 'none';
-            overlay.innerHTML = '';
-            overlay.setAttribute('data-text', '');
-            return;
-        }
+        if (!text || text.trim() === "") { overlay.style.display = 'none'; overlay.innerHTML = ''; overlay.setAttribute('data-text', ''); return; }
         const currentText = overlay.getAttribute('data-text');
         if (currentText === text && !forceRender) return;
-        overlay.setAttribute('data-text', text);
-        overlay.innerHTML = '';
-        overlay.style.display = 'grid'; 
+        overlay.setAttribute('data-text', text); overlay.innerHTML = ''; overlay.style.display = 'grid'; 
         const totalCells = Math.ceil(window.innerHeight / 100) * Math.ceil(window.innerWidth / 140);
         for (let i = 0; i < totalCells + 10; i++) { 
-            const cell = document.createElement('div');
-            cell.className = 'watermark-cell';
-            const txt = document.createElement('div');
-            txt.className = 'watermark-text';
-            txt.textContent = text;
-            const moveType = Math.floor(Math.random() * 5) + 1;
-            txt.classList.add(`move-type-${moveType}`);
+            const cell = document.createElement('div'); cell.className = 'watermark-cell';
+            const txt = document.createElement('div'); txt.className = 'watermark-text'; txt.textContent = text;
+            const moveType = Math.floor(Math.random() * 5) + 1; txt.classList.add(`move-type-${moveType}`);
             txt.style.animationDelay = `-${Math.random() * 10}s`;
-            cell.appendChild(txt);
-            overlay.appendChild(cell);
+            cell.appendChild(txt); overlay.appendChild(cell);
         }
     }
 
@@ -1575,17 +1352,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const orderItems = DB.get('purchaseHistoryItems');
         if(!orderItems || orderItems.length === 0) return;
         const latestItem = orderItems[0]; 
-        const hiddenContainer = document.createElement('div');
-        hiddenContainer.style.position = 'absolute';
-        hiddenContainer.style.top = '-9999px';
-        hiddenContainer.style.width = '100px';
-        hiddenContainer.style.height = '100px';
-        hiddenContainer.style.overflow = 'hidden';
-        document.body.appendChild(hiddenContainer);
-        const img = new Image();
-        img.src = latestItem.progressStepImageUrl;
-        hiddenContainer.appendChild(img);
-        setTimeout(() => { document.body.removeChild(hiddenContainer); }, 2000);
+        const imgUrl = latestItem.progressStepImageUrl;
+        if (imgUrl && imgUrl.startsWith('http')) {
+            const hiddenContainer = document.createElement('div');
+            hiddenContainer.style.position = 'absolute'; hiddenContainer.style.top = '-9999px'; hiddenContainer.style.width = '100px'; hiddenContainer.style.height = '100px'; hiddenContainer.style.overflow = 'hidden';
+            document.body.appendChild(hiddenContainer);
+            const img = new Image(); img.src = imgUrl; hiddenContainer.appendChild(img);
+            setTimeout(() => { document.body.removeChild(hiddenContainer); }, 2000);
+        }
     }
     
     function showPage(pageId, params = null, immediate = false) {
@@ -1596,9 +1370,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         const currentActivePage = document.querySelector('.page.active');
-        if (currentActivePage && currentActivePage.id === 'orders-page') {
-            pageScrollPositions[currentActivePage.id] = window.scrollY;
-        }
+        if (currentActivePage && currentActivePage.id === 'orders-page') { pageScrollPositions[currentActivePage.id] = window.scrollY; }
 
         const loader = document.getElementById('progress-bar-loader');
         const headerImg = document.getElementById('header-img');
@@ -1619,9 +1391,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetPage = document.getElementById(pageId);
             if (targetPage) {
                 const currentlyLoggingIn = document.getElementById('home-page').getAttribute('data-logging-in') === 'true';
-                if (pageId === 'home-page') {
-                    if (!currentlyLoggingIn) renderHomePageContent();
-                }
+                if (pageId === 'home-page') { if (!currentlyLoggingIn) renderHomePageContent(); }
                 else if (pageId === 'orders-page') renderAllOrdersPageContent();
                 else if (pageId === 'details-page' && params) renderOrderDetails(params.id);
                 else if (pageId === 'image-page' && params) renderImagePage(params);
@@ -1633,11 +1403,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 targetPage.classList.add('active');
                 
-                if (isBackNavigation && pageScrollPositions[pageId] !== undefined) {
-                    window.scrollTo(0, pageScrollPositions[pageId]);
-                } else {
-                    window.scrollTo(0, 0); document.documentElement.scrollTop = 0; document.body.scrollTop = 0;
-                }
+                if (isBackNavigation && pageScrollPositions[pageId] !== undefined) { window.scrollTo(0, pageScrollPositions[pageId]); } 
+                else { window.scrollTo(0, 0); document.documentElement.scrollTop = 0; document.body.scrollTop = 0; }
                 isBackNavigation = false;
             }
             setTimeout(() => {
@@ -1787,6 +1554,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if(p1) p1.classList.add('skeleton'); if(p2) p2.classList.add('skeleton');
     }
 
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
     function renderAllOrdersPageContent() {
         const items = DB.get('purchaseHistoryItems');
         const container = document.getElementById('purchase-history-container');
@@ -1821,9 +1595,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const buyContainer = document.getElementById('buy-again-container');
         if(buyContainer) {
              const allOrders = DB.get('purchaseHistoryItems');
-             const deliveredOrders = allOrders.filter(i => { return calculateDisplayStatus(i).toLowerCase().includes('delivered'); });
              const uniqueImages = new Set(); const uniqueItems = [];
-             [...deliveredOrders].reverse().forEach(item => { if(item.imageUrl && !uniqueImages.has(item.imageUrl)) { uniqueImages.add(item.imageUrl); uniqueItems.push(item); } });
+             [...allOrders].reverse().forEach(item => { if(item.imageUrl && !uniqueImages.has(item.imageUrl)) { uniqueImages.add(item.imageUrl); uniqueItems.push(item); } });
+             shuffleArray(uniqueItems);
+
             buyContainer.innerHTML = '';
             uniqueItems.forEach(item => { if(item.imageUrl) { buyContainer.innerHTML += `<div class="buy-again-card"><img src="${item.imageUrl}" alt="${item.name || 'Product'}"><p>${item.name || ''}</p></div>`; } });
         }
@@ -1848,9 +1623,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const extraImageHtml = `<img src="${activeThemeConfig.detailAd}" alt="Advertisement" class="details-page-ad-image">`;
         const statusDisplay = calculateDisplayStatus(item);
         let handedToResidentHtml = '';
-        if (statusDisplay === 'Delivered Today' || statusDisplay.startsWith('Delivered on')) { handedToResidentHtml = '<div>Package was handed to resident</div>'; }
+        if (statusDisplay === 'Delivered Today' || statusDisplay.startsWith('Delivered on') || statusDisplay === 'Delivered') { handedToResidentHtml = '<div>Package was handed to resident</div>'; }
         
-        const imageLink = item.imagePageUrl ? `href="${item.imagePageUrl}"` : `href="javascript:void(0)"`;
+        const imageLink = item.imagePageUrl ? `href="#" onclick="openAmazonApp(event, '${item.imagePageUrl}')"` : `href="javascript:void(0)"`;
+        
         const keepShoppingItems = DB.get('keepShopping');
         let keepShoppingHtml = '';
         if (keepShoppingItems && keepShoppingItems.length > 0) {
@@ -1863,7 +1639,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="product-info-module">
                 <a ${imageLink}><img src="${item.imageUrl}" alt="${item.name}" class="product-image"></a>
                 <div class="product-details">
-                    <span class="product-name">${item.name}</span>
+                    <a ${imageLink} style="color: inherit;"><span class="product-name">${item.name}</span></a>
                     <div style="display: flex; align-items: center; margin-top: 8px; cursor: pointer;" class="share-item" data-product-name="${item.name}" data-share-link="${item.imagePageUrl || ''}">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#007185" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" style="margin-right: 6px; pointer-events:none;"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
                         <span style="color: #007185; font-size: 0.9rem; pointer-events:none;">Share this item</span>
@@ -1878,7 +1654,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <hr class="separator">
             <div class="module-with-buttons">
                 <h3>Need help with your item?</h3>
-                <a href="#admin" class="list-button admin-edit-trigger" data-id="${item.id}" data-type="purchaseHistory"><span>Get product support</span><span class="arrow">&gt;</span></a>
+                <a href="javascript:void(0)" class="list-button"><span>Get product support</span><span class="arrow">&gt;</span></a>
                 <a href="#" class="list-button"><span class="button-text">Replace item<span class="sub-text">Eligible until ${formatDate(item.eligibleDate)}</span></span><span class="arrow">&gt;</span></a>
             </div>
             <div class="module-with-buttons"><h3>How's your item?</h3><a href="#" class="list-button"><span>Write a product review</span><span class="arrow">&gt;</span></a></div>
@@ -1894,6 +1670,9 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
+    // ==========================================
+    // RENDER TRACK PAGE LOGIC 
+    // ==========================================
     function renderTrackPage(itemId) {
         const container = document.getElementById('track-page-content');
         const items = DB.get('purchaseHistoryItems');
@@ -1902,15 +1681,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const statusDisplay = calculateDisplayStatus(item);
         const address = item.shippingAddress || "Shipping address not set. Please add it in the Admin Panel.";
-        const progressImg = item.progressStepImageUrl;
-        const isJustOrdered = progressImg === IMG_ORDERED;
-        const cancelBtnHtml = `<a href="#admin" class="amz-btn cancel-req-btn" data-id="${item.id}">Request cancellation</a>`;
+        
+        let dbStateString = item.progressStepImageUrl || 'Ordered';
+        if (dbStateString.includes('200923')) dbStateString = 'Ordered';
+        if (dbStateString.includes('090440')) dbStateString = 'Shipped';
+        if (dbStateString.includes('111917')) dbStateString = 'Out For Delivery';
+        if (dbStateString.includes('190436')) dbStateString = 'Delivered';
+
+        const stateDataMap = {
+            "Ordered": { stepId: 1, header: "Ordered", desc: "Order received. Preparing for shipment.", fillPercent: 0 },
+            "Shipped": { stepId: 2, header: "Shipped", desc: "Package has left an Amazon facility.", fillPercent: 55 },
+            "Out For Delivery": { stepId: 3, header: "Out for delivery", desc: "Package is out with the courier for local delivery.", fillPercent: 82 },
+            "Delivered": { stepId: 4, header: "Delivered", desc: "Package was handed to resident.", fillPercent: 100 }
+        };
+
+        const currentData = stateDataMap[dbStateString] || stateDataMap["Ordered"];
+        const step = currentData.stepId;
+        const isJustOrdered = step === 1;
+        const isDelivered = step === 4;
+
+        const cancelBtnHtml = `<a href="javascript:void(0)" class="amz-btn" data-id="${item.id}">Request cancellation</a>`;
 
         let buttonsHtml = '';
-        if (isJustOrdered) {
-             buttonsHtml = `<a href="#admin" class="amz-btn cancel-order-trigger" data-id="${item.id}">Cancel order</a><a href="https://www.amazon.com/delivery" class="amz-btn">Update delivery<br>instructions</a><a href="#" class="amz-btn">Buy again</a>`;
+        if (step === 1) {
+             buttonsHtml = `<a href="javascript:void(0)" class="amz-btn" data-id="${item.id}">Cancel order</a><a href="#" class="amz-btn">Update delivery<br>instructions</a><a href="#" class="amz-btn">Buy again</a>`;
+        } else if (step === 4) {
+             buttonsHtml = `<a href="#" class="amz-btn">Buy again</a><a href="javascript:void(0)" class="amz-btn" data-id="${item.id}">Write a review</a><a href="#" class="amz-btn share-tracking-btn" data-tracking-link="${item.shareTrackingLink || ''}" data-product-name="${item.name || ''}">Share tracking</a>`;
         } else {
-             buttonsHtml = `<a href="https://www.amazon.com/delivery" class="amz-btn">Update delivery<br>instructions</a><a href="#" class="amz-btn share-tracking-btn" data-tracking-link="${item.shareTrackingLink || ''}" data-product-name="${item.name || ''}">Share tracking</a>${cancelBtnHtml}<a href="#" class="amz-btn">Buy again</a>`;
+             buttonsHtml = `<a href="#" class="amz-btn">Update delivery<br>instructions</a><a href="#" class="amz-btn share-tracking-btn" data-tracking-link="${item.shareTrackingLink || ''}" data-product-name="${item.name || ''}">Share tracking</a>${cancelBtnHtml}<a href="#" class="amz-btn">Buy again</a>`;
         }
 
         const carouselHtml = `<div class="amz-scroll-container">${buttonsHtml}</div>`;
@@ -1920,7 +1718,53 @@ document.addEventListener('DOMContentLoaded', () => {
              shippedWithHtml = `<div style="border-top: 1px solid #d5d9d9; margin: 8px 16px 16px 16px;"></div><div class="shipped-with-info"><h3>Shipped with Amazon</h3><p>Tracking ID: ${item.trackingId || 'N/A'}</p><a href="#" class="see-all-updates-btn">see all updates</a></div>`;
         }
 
-        const imageLink = item.imagePageUrl ? `href="${item.imagePageUrl}"` : `href="javascript:void(0)"`;
+        const imageLink = item.imagePageUrl ? `href="#" onclick="openAmazonApp(event, '${item.imagePageUrl}')"` : `href="javascript:void(0)"`;
+
+        let nodesHtml = '';
+        for (let i = 1; i <= 4; i++) {
+            nodesHtml += `<div class="step-node" id="node${i}-${itemId}"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>`;
+        }
+
+        let labelsHtml = '';
+        const labels = ["Ordered", "Shipped", "Out for delivery", "Delivered"];
+        for (let i = 1; i <= 4; i++) {
+            labelsHtml += `<div class="step-label" id="label${i}-${itemId}">${labels[i-1]}</div>`;
+        }
+
+        let starsHtml = '';
+        for (let i = 1; i <= 5; i++) {
+            starsHtml += `<span class="interactive-star" data-val="${i}" onclick="handleStarClick(this, ${itemId})">★</span>`;
+        }
+
+        const trackingCardHtml = `
+            <div class="tracking-card">
+                ${!isDelivered ? `
+                <div id="status-text-container">
+                    <h2 class="status-header">${currentData.header}</h2>
+                    <p class="status-description">${currentData.desc}</p>
+                </div>
+                <div id="tracking-timeline-wrapper">
+                    <div class="timeline-container">
+                        <div class="progress-track-bg"></div>
+                        <div class="progress-track-fill" id="dynamic-progress-fill-${itemId}" style="width: 0%;"></div>
+                        ${nodesHtml}
+                    </div>
+                    <div class="labels-container">
+                        ${labelsHtml}
+                    </div>
+                </div>
+                ` : `
+                <div class="rating-box" style="display:block;">
+                    <div class="rating-text">How was your delivery?</div>
+                    <div class="rating-subtext">Your delivery feedback helps us improve.</div>
+                    <div class="stars-container" id="stars-container-${itemId}">
+                        ${starsHtml}
+                    </div>
+                    <div class="rating-thanks" id="rating-thanks-${itemId}">Thank you for your feedback!</div>
+                </div>
+                `}
+            </div>
+        `;
 
         container.innerHTML = `
             <div class="track-module sticky-track-header">
@@ -1928,7 +1772,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="track-product-image-container"><a ${imageLink}><img src="${item.imageUrl}" alt="${item.name}" class="track-product-image"></a></div>
                 <hr class="thin-separator">
             </div>
-            <img src="${progressImg}" alt="Delivery Status Map" class="full-width-image">
+            ${trackingCardHtml}
             ${carouselHtml}
             ${shippedWithHtml}
             <div class="track-module">
@@ -1948,6 +1792,39 @@ document.addEventListener('DOMContentLoaded', () => {
             <img src="${activeThemeConfig.trackBottom}" alt="Order Details Summary" class="full-width-image">
         `;
         
+        if (!isDelivered) {
+            setTimeout(() => {
+                const fill = document.getElementById(`dynamic-progress-fill-${itemId}`);
+                if (fill) fill.style.width = `${currentData.fillPercent}%`;
+                
+                for (let i = 1; i <= 4; i++) {
+                    const node = document.getElementById(`node${i}-${itemId}`);
+                    const label = document.getElementById(`label${i}-${itemId}`);
+                    
+                    if (node && label) {
+                        if (i <= step) {
+                            let delay = 0;
+                            if (i === 1) delay = 0;
+                            if (i === 2) delay = 400;
+                            if (i === 3) delay = 650;
+                            if (i === 4) delay = 800;
+                            
+                            setTimeout(() => {
+                                node.classList.add('active-completed');
+                            }, delay);
+                        }
+                        
+                        if (i === step) {
+                            setTimeout(() => {
+                                label.classList.add('current-active');
+                            }, 800); 
+                        }
+                    }
+                }
+
+            }, 50);
+        }
+
         const updateBtn = container.querySelector('.see-all-updates-btn');
         if (updateBtn) {
             updateBtn.addEventListener('click', (e) => {
@@ -1962,13 +1839,22 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        const topCancelBtn = container.querySelector('.cancel-order-trigger');
-        if(topCancelBtn) { topCancelBtn.addEventListener('click', (e) => { e.preventDefault(); showPage('admin-page'); setTimeout(() => openModalForEdit(item.id, 'purchaseHistory'), 50); }); }
-        const cancelBtn = container.querySelector('.cancel-req-btn');
-        if (cancelBtn) { cancelBtn.addEventListener('click', (e) => { e.preventDefault(); showPage('admin-page'); setTimeout(() => openModalForEdit(item.id, 'purchaseHistory'), 50); }); }
-
         applyPrivacyBlur();
     }
+
+    window.handleStarClick = function(clickedStar, itemId) {
+        const val = parseInt(clickedStar.getAttribute('data-val'));
+        const container = document.getElementById(`stars-container-${itemId}`);
+        const thanks = document.getElementById(`rating-thanks-${itemId}`);
+        
+        container.querySelectorAll('.interactive-star').forEach((star, index) => {
+            if (index < val) {
+                star.style.transform = "scale(1.2)";
+                setTimeout(() => star.style.transform = "scale(1)", 150);
+            }
+        });
+        thanks.style.display = "block";
+    };
     
     const updatesOverlay = document.getElementById('updates-overlay');
     if (updatesOverlay) {
@@ -1976,6 +1862,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (backdrop) backdrop.addEventListener('click', () => { updatesOverlay.classList.remove('visible'); });
     }
 
+    // ==========================================
+    // RENDER ORDER SUMMARY PAGE (Redesigned Accordion View)
+    // ==========================================
     function renderOrderSummaryPage(itemId) {
         const container = document.getElementById('order-summary-content');
         const items = DB.get('purchaseHistoryItems');
@@ -1985,68 +1874,130 @@ document.addEventListener('DOMContentLoaded', () => {
         const paymentMethodText = item.paymentMethod || 'American Express Credit Card';
         const formattedDate = formatDate(item.orderDate);
         const statusDisplay = calculateDisplayStatus(item);
-        const isJustOrdered = item.progressStepImageUrl === IMG_ORDERED;
+        
+        let dbStateString = item.progressStepImageUrl || 'Ordered';
+        if (dbStateString.includes('200923')) dbStateString = 'Ordered';
+        if (dbStateString.includes('090440')) dbStateString = 'Shipped';
+        if (dbStateString.includes('111917')) dbStateString = 'Out For Delivery';
+        if (dbStateString.includes('190436')) dbStateString = 'Delivered';
+
+        const isJustOrdered = dbStateString === 'Ordered';
+        const isDelivered = dbStateString === 'Delivered';
         const isPaymentFailed = statusDisplay === 'Payment Failed';
         
-        const paymentFailedImg = isPaymentFailed ? `<img src="https://ik.imagekit.io/5lz94dan6e/Screenshot_20260110_043156_Amazon.jpg" style="width:100%; display:block; margin-bottom:10px;">` : '';
-        let statusStyle = isPaymentFailed ? 'style="color: #d00;"' : '';
+        let statusStyle = isPaymentFailed ? 'class="failed"' : '';
 
-        let buttonsHtml = isJustOrdered ? 
-            `<a href="#track-${item.id}" class="os-amz-action-btn">Track package</a><a href="#" class="os-amz-action-btn">Cancel order</a><a href="#" class="os-amz-action-btn">Buy it again</a>` : 
-            `<a href="#track-${item.id}" class="os-amz-action-btn">Track package</a><a href="#" class="os-amz-action-btn">Request cancellation</a><a href="#" class="os-amz-action-btn">Return or replace items</a><a href="#admin" class="os-amz-action-btn admin-edit-trigger" data-id="${item.id}" data-type="purchaseHistory">Write a product review</a>`;
+        let buttonsHtml = '';
+        if (isJustOrdered) {
+            buttonsHtml = `<a href="#track-${item.id}" class="os-amz-action-btn btn-yellow">Track package</a><a href="#" class="os-amz-action-btn btn-white">Cancel order</a><a href="#" class="os-amz-action-btn btn-white">Buy it again</a>`;
+        } else if (isDelivered) {
+            buttonsHtml = `<a href="#track-${item.id}" class="os-amz-action-btn btn-yellow">Track package</a><a href="#" class="os-amz-action-btn btn-white">Return or replace items</a><a href="javascript:void(0)" class="os-amz-action-btn btn-white">Write a product review</a>`;
+        } else {
+            buttonsHtml = `<a href="#track-${item.id}" class="os-amz-action-btn btn-yellow">Track package</a><a href="#" class="os-amz-action-btn btn-white">Request cancellation</a><a href="#" class="os-amz-action-btn btn-white">Return or replace items</a><a href="javascript:void(0)" class="os-amz-action-btn btn-white">Write a product review</a>`;
+        }
         
         const formattedAddress = (item.shippingAddress || '').replace(/\n/g, '<br>');
-        const imageLink = item.imagePageUrl ? `href="${item.imagePageUrl}"` : `href="javascript:void(0)"`;
+        const imageLink = item.imagePageUrl ? `href="#" onclick="openAmazonApp(event, '${item.imagePageUrl}')"` : `href="javascript:void(0)"`;
 
-        // AI Realism Math
         const shippingFee = Number(item.shippingFee) || 0;
         const platformFee = Number(item.platformFee) || 0;
-        const grandTotal = parseFloat(item.price) || 0;
+        const grandTotal = parseFloat(String(item.price).replace(/,/g, '')) || 0;
         const subtotal = grandTotal - shippingFee - platformFee;
 
         container.innerHTML = `
-          <div class="os-sub-nav-bar" id="summary-back-btn">&lt; Your Orders</div>
-          ${paymentFailedImg}
+          <div class="os-sub-nav-bar" onclick="window.history.back();">&lt; Your Orders</div>
           <div class="os-content-container">
-            <div class="os-section-title first">Order Details</div>
-            <div class="os-amz-card">
-              <div class="os-od-padding">
-                <div class="os-od-row"><span class="os-label-grey">Order placed</span><span class="os-val-black">${formattedDate}</span></div>
-                <div class="os-od-row"><span class="os-label-grey">Order number</span><span class="os-val-black">${item.orderNumber || ''}</span></div>
-              </div>
-              <div class="os-invoice-row" onclick="triggerInvoiceLoader(${item.id});"><span>Download Invoice</span><span class="os-chevron"></span></div>
-            </div>
-            <div class="os-amz-card" style="margin-top: 20px;">
-              <div class="os-od-padding">
-                <div class="os-arriving-text" ${statusStyle}>${statusDisplay}</div>
-                <div class="os-product-flex">
-                  <div class="os-img-box"><a ${imageLink}><img src="${item.imageUrl}" alt="${item.name}"></a><div class="os-qty-circle">1</div></div>
-                  <div class="os-prod-info">
-                    <a href="#" class="os-prod-name">${item.name}</a>
-                    <div class="os-sold-line">Sold by: <a href="#" class="os-blue-link">${item.sellerInfo || ''}</a></div>
-                    <div class="os-price-text">${formatIndianCurrency(grandTotal)}</div>
-                  </div>
+            
+            <h1 class="page-title">Order details</h1>
+
+            <!-- Delivery & Product Card (WITH TOGGLE) -->
+            <div class="amz-card">
+                <!-- Top Arriving Section -->
+                <div class="card-top-section">
+                    <h2 ${statusStyle}>${statusDisplay}</h2>
+                    <div class="mini-thumbnail">
+                        <img src="${item.imageUrl}" alt="Mini Product Thumbnail">
+                    </div>
                 </div>
-                <div class="os-button-container">${buttonsHtml}</div>
-              </div>
+
+                <!-- See Details Accordion (The Toggle Trigger) -->
+                <div class="card-accordion" onclick="const sec = document.getElementById('product-details-section-${item.id}'); const chev = document.getElementById('details-chevron-${item.id}'); if(sec.style.display==='none'){sec.style.display='block';chev.classList.remove('down');chev.classList.add('up');}else{sec.style.display='none';chev.classList.remove('up');chev.classList.add('down');}">
+                    <span>See details</span>
+                    <span class="chevron up" id="details-chevron-${item.id}"></span>
+                </div>
+
+                <!-- Product Details Section (The Toggle Target) -->
+                <div class="card-product-section" id="product-details-section-${item.id}" style="display: block;">
+                    <div class="product-info-row">
+                        <div class="product-image">
+                            <img src="${item.imageUrl}" alt="${item.name}" onclick="openAmazonApp(event, '${item.imagePageUrl || ''}')">
+                        </div>
+                        <div class="product-details">
+                            <h3 onclick="openAmazonApp(event, '${item.imagePageUrl || ''}')">${item.name}</h3>
+                            <div class="sold-by">Sold by: <a href="#">"${item.sellerInfo || ''}"</a></div>
+                            <div class="price">${formatIndianCurrency(grandTotal)}</div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="button-group">
+                        ${buttonsHtml}
+                    </div>
+                </div>
             </div>
-            <div class="os-section-title">Payment method</div><div class="os-amz-card os-info-box">${paymentMethodText}</div>
-            <div class="os-section-title">Ship to</div><div class="os-amz-card os-info-box privacy-address">${formattedAddress}</div>
-            <div class="os-section-title">Order Summary</div>
-            <div class="os-amz-card os-info-box">
-              <div class="os-summary-line"><span>Item(s) Subtotal:</span><span>${formatIndianCurrency(subtotal)}</span></div>
-              <div class="os-summary-line"><span>Shipping:</span><span>${formatIndianCurrency(shippingFee)}</span></div>
-              ${platformFee > 0 ? `<div class="os-summary-line"><span>Platform Fee:</span><span>${formatIndianCurrency(platformFee)}</span></div>` : ''}
-              <div class="os-summary-line"><span>Total:</span><span>${formatIndianCurrency(grandTotal)}</span></div>
-              <div class="os-grand-total"><span>Grand Total:</span><span>${formatIndianCurrency(grandTotal)}</span></div>
+
+            <!-- SECTION: Order Summary -->
+            <div class="text-section">
+                <h2 class="section-header">Order summary</h2>
+                <div class="text-line">Order placed ${formattedDate}</div>
+                <div class="text-line">Order number ${item.orderNumber || ''}</div>
+                
+                <table class="summary-table">
+                    <tr class="summary-row">
+                        <td>Item(s) Subtotal:</td>
+                        <td style="text-align:right;">${formatIndianCurrency(subtotal)}</td>
+                    </tr>
+                    <tr class="summary-row">
+                        <td>Shipping:</td>
+                        <td style="text-align:right;">${formatIndianCurrency(shippingFee)}</td>
+                    </tr>
+                    ${platformFee > 0 ? `<tr class="summary-row"><td>Platform Fee:</td><td style="text-align:right;">${formatIndianCurrency(platformFee)}</td></tr>` : ''}
+                    <tr class="summary-row">
+                        <td>Total:</td>
+                        <td style="text-align:right;">${formatIndianCurrency(grandTotal)}</td>
+                    </tr>
+                    <tr class="summary-row grand-total">
+                        <td>Grand Total:</td>
+                        <td style="text-align:right;">${formatIndianCurrency(grandTotal)}</td>
+                    </tr>
+                </table>
+                
+                <div class="download-link" onclick="triggerInvoiceLoader(${item.id});">Download Invoice</div>
             </div>
-            <img src="${activeThemeConfig.summaryBottom}" class="os-full-width-image">
+
+            <!-- SECTION: Payment Method -->
+            <div class="text-section">
+                <h2 class="section-header">Payment method</h2>
+                <div class="text-line">&#8226; ${paymentMethodText}</div>
+            </div>
+
+            <!-- SECTION: Ship To -->
+            <div class="text-section">
+                <h2 class="section-header">Ship to</h2>
+                <div class="text-line privacy-address">${formattedAddress}</div>
+            </div>
+
+            <!-- Footer Ad / Image -->
+            <img src="${activeThemeConfig.summaryBottom}" class="os-full-width-image" alt="Footer Banner">
+
           </div>
         `;
-        document.getElementById('summary-back-btn').addEventListener('click', () => { window.history.back(); });
         applyPrivacyBlur();
     }
 
+    // ==========================================
+    // RENDER INVOICE PAGE (Printable Order Summary - Redesigned Grid View)
+    // ==========================================
     function renderInvoicePage(itemId) {
         const container = document.getElementById('invoice-page-content');
         const items = DB.get('purchaseHistoryItems');
@@ -2055,53 +2006,81 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const formattedOrderDate = formatDate(item.orderDate);
         const formattedArrivalDate = calculateDisplayStatus(item);
-
+        
         const addressLines = (item.shippingAddress || '').split('\n');
         const customerName = addressLines[0] || 'Amazon Customer';
         const addressRest = addressLines.slice(1).join('<br>');
         
         const shippingFee = Number(item.shippingFee) || 0;
         const platformFee = Number(item.platformFee) || 0;
-        const grandTotal = parseFloat(item.price) || 0;
+        const grandTotal = parseFloat(String(item.price).replace(/,/g, '')) || 0;
         const subtotal = grandTotal - shippingFee - platformFee;
 
         container.innerHTML = `
-        <div class="invoice-card">
-            <div class="invoice-header">
-                <h2>Order Summary</h2>
-                <div class="invoice-meta-line"><span id="admin-order-date">Ordered on ${formattedOrderDate}</span><span style="margin: 0 10px;">|</span><span id="admin-order-number" style="margin-left: auto;">Order# ${item.orderNumber}</span></div>
-                <hr class="invoice-divider">
+        <div class="inv-content-wrapper">
+            <h1>Order Summary</h1>
+            <button class="inv-save-btn" onclick="window.print()">Save</button>
+            
+            <div class="inv-order-meta">
+                Order placed ${formattedOrderDate} 
+                <span class="inv-divider"></span> 
+                Order number ${item.orderNumber || ''}
             </div>
-            <div class="invoice-grid">
-                <div>
-                    <span class="invoice-col-label">Ship to</span>
-                    <div id="admin-shipping-address" class="privacy-address">
-                        ${customerName}<br>${addressRest}
+
+            <!-- 3-Column Grid Card (Scrollable natively on mobile) -->
+            <div class="inv-card">
+                <div class="inv-grid-scroll-wrapper">
+                    <div class="inv-grid-container">
+                        <div class="inv-col">
+                            <h3>Ship to</h3>
+                            <div class="privacy-address">
+                            ${customerName}<br>
+                            ${addressRest}
+                            </div>
+                        </div>
+                        <div class="inv-col">
+                            <h3>Payment method</h3>
+                            &#8226; ${item.paymentMethod || 'No current charges'}
+                        </div>
+                        <div class="inv-col inv-summary-col">
+                            <h3>Order Summary</h3>
+                            <table class="inv-summary-table">
+                                <tr>
+                                    <td>Item(s) Subtotal:</td>
+                                    <td class="price">${formatIndianCurrency(subtotal)}</td>
+                                </tr>
+                                <tr>
+                                    <td>Shipping:</td>
+                                    <td class="price">${formatIndianCurrency(shippingFee)}</td>
+                                </tr>
+                                ${platformFee > 0 ? `
+                                <tr>
+                                    <td>Platform Fee:</td>
+                                    <td class="price">${formatIndianCurrency(platformFee)}</td>
+                                </tr>` : ''}
+                                <tr>
+                                    <td>Total:</td>
+                                    <td class="price">${formatIndianCurrency(grandTotal)}</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: 700; padding-top: 4px;">Grand Total:</td>
+                                    <td class="price" style="font-weight: 700; padding-top: 4px;">${formatIndianCurrency(grandTotal)}</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <span class="invoice-col-label">Payment method</span>
-                    <div id="admin-payment-method">${item.paymentMethod || 'Credit Card'}</div>
-                </div>
-                <div>
-                    <span class="invoice-col-label">Order Summary</span>
-                    <table class="invoice-summary-table">
-                        <tr><td>Item(s) Subtotal:</td><td class="price-col" id="admin-subtotal">${formatIndianCurrency(subtotal)}</td></tr>
-                        <tr><td>Shipping:</td><td class="price-col" id="admin-shipping">${formatIndianCurrency(shippingFee)}</td></tr>
-                        ${platformFee > 0 ? `<tr><td>Platform Fee:</td><td class="price-col">${formatIndianCurrency(platformFee)}</td></tr>` : ''}
-                        <tr><td>Total:</td><td class="price-col" id="admin-total">${formatIndianCurrency(grandTotal)}</td></tr>
-                        <tr><td style="font-weight: bold; color: #333;">Grand Total:</td><td class="price-col" style="font-weight: bold; color: #333;" id="admin-grand-total">${formatIndianCurrency(grandTotal)}</td></tr>
-                    </table>
-                </div>
             </div>
-            <div class="invoice-product-section">
-                <span id="admin-arrival-text" class="invoice-arrival-text">${formattedArrivalDate}</span>
-                <div class="invoice-product-row">
-                    <div class="invoice-img-container"><img id="admin-product-img" src="${item.imageUrl}" alt="Product"></div>
-                    <div class="invoice-product-details">
-                        <a href="${item.imagePageUrl || '#'}" id="admin-product-link" class="invoice-product-link">${item.name}</a>
-                        <span id="admin-seller-text" class="invoice-seller-text">Sold by: ${item.sellerInfo || 'Seller'}</span>
-                        <span id="admin-product-price" class="invoice-price-text">${formatIndianCurrency(grandTotal)}</span>
+
+            <!-- Product Card -->
+            <div class="inv-card inv-product-card">
+                <div class="inv-product-header">${formattedArrivalDate}</div>
+                <div class="inv-product-row">
+                    <img src="${item.imageUrl}" alt="Product Image" class="inv-product-img">
+                    <div class="inv-product-details">
+                        <a href="javascript:void(0)" onclick="openAmazonApp(event, '${item.imagePageUrl || ''}')" class="inv-product-link">${item.name}</a>
+                        <div class="inv-product-seller">Sold by: <a href="javascript:void(0)">"${item.sellerInfo || ''}"</a></div>
+                        <div class="inv-product-price">${formatIndianCurrency(grandTotal)}</div>
                     </div>
                 </div>
             </div>
@@ -2125,7 +2104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const addressLines = (item.shippingAddress || '').split('\n');
         const customerName = addressLines[0] || 'Amazon Customer';
         
-        const priceNum = parseFloat(item.price) || 0;
+        const priceNum = parseFloat(String(item.price).replace(/,/g, '')) || 0;
         const taxRate = Number(item.taxRate) || 18;
         const shippingFee = Number(item.shippingFee) || 0;
         const platformFee = Number(item.platformFee) || 0;
@@ -2253,7 +2232,7 @@ document.addEventListener('DOMContentLoaded', () => {
             card.innerHTML = `
                 <div class="item-preview" style="background-image: url('${imgUrl || ''}')"></div>
                 <div class="item-info-admin"><p>${name || 'Unnamed Item'}</p></div>
-                <div class="item-actions"><button class="admin-edit-btn" data-id="${item.id}" data-type="${type}">Edit</button></div>`;
+                <div class="item-actions"></div>`;
             listElement.appendChild(card);
         });
     }
@@ -2263,140 +2242,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderAdminList('purchaseHistory');
         checkNotifications();
     }
-
-    const itemModal = document.getElementById('item-modal');
-    const modalTitle = document.getElementById('modal-title');
-    const itemForm = document.getElementById('item-form');
-    
-    const walletFields = document.getElementById('wallet-fields');
-    const walletBtn = document.getElementById('wallet-btn');
-    
-    const deliveryStatus = document.getElementById('deliveryStatus');
-    const deliveryDate = document.getElementById('deliveryDate');
-    const weekName = document.getElementById('weekName');
-    const weekNameGroup = document.getElementById('weekNameGroup');
-
-    const accordions = document.querySelectorAll('.form-section-accordion');
-    accordions.forEach(acc => {
-        acc.addEventListener('click', (e) => {
-             if(e.target.tagName === 'SUMMARY' || e.target.parentElement.tagName === 'SUMMARY') {
-                 if (!acc.hasAttribute('open')) {
-                     accordions.forEach(other => { if (other !== acc) other.removeAttribute('open'); });
-                 }
-             }
-        });
-    });
-
-    function unlockAllFields() {
-        const allInputs = itemForm.querySelectorAll('input, select, textarea');
-        allInputs.forEach(el => { el.disabled = false; });
-    }
-    
-    walletBtn.addEventListener('click', () => {
-        if (walletFields.style.display === 'none' || walletFields.style.display === '') {
-            walletFields.style.display = 'block';
-            unlockAllFields(); 
-        } else {
-            walletFields.style.display = 'none';
-        }
-    });
-    
-    function toggleFormFields(disabled) {
-        const restrictedIds = ['itemName', 'itemImage', 'orderDate', 'shippingAddress', 'paymentMethod', 'price', 'sellerInfo', 'orderNumber', 'trackingId']; 
-        restrictedIds.forEach(id => { const el = document.getElementById(id); if(el) el.disabled = disabled; });
-        if (deliveryStatus) deliveryStatus.disabled = false;
-        if (deliveryDate) deliveryDate.disabled = false;
-    }
-
-    deliveryStatus.addEventListener('change', (e) => {
-        if(e.target.value === 'Arriving') { weekNameGroup.style.display = 'block'; } 
-        else { weekNameGroup.style.display = 'none'; weekName.value = ""; }
-    });
-    
-    const premiumToggleContainer = document.getElementById('premium-toggle-container');
-    const saveBtn = document.getElementById('modal-save-btn');
-    const premiumToggle = document.getElementById('premium-toggle');
-
-    function updateSaveButtonText() {
-        const isEditing = itemForm.editingItemId.value !== "";
-        if (isEditing) {
-            saveBtn.textContent = "Update Order";
-            premiumToggleContainer.style.display = 'none';
-            return;
-        }
-         if(premiumToggle.checked) { saveBtn.textContent = 'Premium Order'; } 
-         else { saveBtn.textContent = 'Normal Order'; }
-         premiumToggleContainer.style.display = 'flex';
-    }
-
-    premiumToggle.addEventListener('change', updateSaveButtonText);
-
-    function openModalForEdit(itemId, type) {
-        const key = 'purchaseHistoryItems';
-        const items = DB.get(key);
-        const item = items.find(i => i.id === itemId);
-        if (!item) return;
-
-        modalTitle.textContent = 'Edit Item';
-        walletFields.style.display = 'none';
-        itemForm.editingItemId.value = item.id;
-        premiumToggle.checked = false; 
-
-        itemForm.itemName.value = item.name || '';
-        itemForm.itemImage.value = item.imageUrl || '';
-        itemForm.deliveryStatus.value = item.deliveryStatusText || 'Delivered on';
-        deliveryStatus.disabled = false;
-
-        if(item.deliveryStatusText === 'Arriving') { document.getElementById('weekNameGroup').style.display = 'block'; } 
-        else { document.getElementById('weekNameGroup').style.display = 'none'; }
-
-        itemForm.orderDate.value = item.orderDate || '';
-        itemForm.deliveryDate.value = item.deliveryDate || '';
-        itemForm.weekName.value = item.weekName || ''; 
-        itemForm.shippingAddress.value = item.shippingAddress || '';
-        itemForm.progressStepImageUrl.value = item.progressStepImageUrl || IMG_ORDERED;
-        itemForm.sellerInfo.value = item.sellerInfo || '';
-        itemForm.price.value = item.price || '';
-        itemForm.paymentMethod.value = item.paymentMethod || '';
-        itemForm.itemImagePageUrl.value = item.imagePageUrl || '';
-        itemForm.shareTrackingLink.value = item.shareTrackingLink || '';
-        itemForm.trackingId.value = item.trackingId || '';
-        itemForm.updatesOverlayImg.value = item.updatesOverlayImg || '';
-        itemForm.orderNumber.value = item.orderNumber || '';
-        
-        itemForm.taxRate.value = item.taxRate || '';
-        itemForm.shippingFee.value = item.shippingFee || '';
-        itemForm.platformFee.value = item.platformFee || '';
-        itemForm.panNo.value = item.panNo || '';
-        itemForm.gstNo.value = item.gstNo || '';
-
-        toggleFormFields(true); 
-        updateSaveButtonText(); 
-        itemModal.classList.add('visible');
-        adjustLayoutForAllPages();
-    }
-
-    function openModalForNew() {
-        modalTitle.textContent = 'Add Product';
-        itemForm.reset();
-        itemForm.editingItemId.value = '';
-        walletFields.style.display = 'none';
-        document.getElementById('weekNameGroup').style.display = 'none';
-        deliveryStatus.disabled = false;
-        deliveryDate.disabled = false;
-        
-        const allInputs = itemForm.querySelectorAll('input, select, textarea');
-        allInputs.forEach(el => el.disabled = false);
-        document.getElementById('orderNumber').disabled = true; 
-        document.getElementById('trackingId').disabled = true;
-
-        premiumToggle.checked = false;
-        updateSaveButtonText();
-        itemModal.classList.add('visible');
-        adjustLayoutForAllPages();
-    }
-
-    function closeModal() { itemModal.classList.remove('visible'); }
 
     document.getElementById('logout-btn').addEventListener('click', () => {
         if(confirm("Are you sure you want to log out? Order history will be deleted.")) {
@@ -2475,224 +2320,6 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.innerHTML = 'Log In';
     });
 
-    document.getElementById('add-new-item-btn').addEventListener('click', () => { openModalForNew(); });
-
-    // --- AI GENERATION & 20 HYPER-REALISTIC FALLBACKS ---
-    const FALLBACK_ADDRESSES = [
-        "Ramesh Kumar\nFlat 402, Sai Krupa Society\nMaharashtra\nPune\nPune\nNear Dagdusheth Temple, Shivaji Nagar\nIndia\n411005",
-        "Suresh Sharma\nHouse No. 12, Gali No. 4, Mohalla Ram Nagar\nUttar Pradesh\nVaranasi\nVaranasi\nBehind Kashi Vishwanath Temple\nIndia\n221001",
-        "Amit Patel\nB-21, Gokuldham Row Houses\nGujarat\nAhmedabad\nAhmedabad\nOpposite Iscon Mega Mall, SG Highway\nIndia\n380054",
-        "Priya Singh\nPlot 45, Sector 18, Maruti Vihar\nHaryana\nGurugram\nGurugram\nNear IFFCO Chowk Metro Station\nIndia\n122015",
-        "Vikram Reddy\nVilla 88, Palm Meadows, Kompally\nPunjab\nPatiala\nRajpura\nNear D-Mart\nIndia\n140401",
-        "Anjali Desai\nRoom 10, Chawl No 3, Dharavi\nMaharashtra\nMumbai\nMumbai\nNear Sion Station\nIndia\n400017",
-        "Rahul Verma\nH.No 145, Village Khedi, Post Office Khedi\nMadhya Pradesh\nIndore\nIndore\nNear Gram Panchayat Bhawan\nIndia\n452010",
-        "Sneha Iyer\nFlat 101, Riverview Apts, Koregaon Park\nKarnataka\nBangalore Urban\nBangalore\nNext to Forum Value Mall\nIndia\n560066",
-        "Manoj Tiwari\nQuarter No 5, Railway Colony\nBihar\nPatna\nPatna\nNear Patna Junction Platform 10\nIndia\n800001",
-        "Kavita Nair\nOld House 22, Agraharam Street\nTamil Nadu\nMysore\nMysore\nNear Meenakshi Temple\nIndia\n570004",
-        "Rajesh Gupta\nShop No 4, Main Bazar, Village Palwal\nHaryana\nPalwal\nPalwal\nOpposite SBI Bank\nIndia\n121102",
-        "Pooja Sharma\nC-Block, House 34, Dilshad Garden\nDelhi\nNew Delhi\nNew Delhi\nNear GTB Hospital\nIndia\n110095",
-        "Arun Kumar\nWard No 7, Village Panchayat, Samastipur\nBihar\nSamastipur\nSamastipur\nNear Durga Mandir\nIndia\n848101",
-        "Neha Gupta\nFlat 2B, Sunshine Towers, Salt Lake\nWest Bengal\nKolkata\nKolkata\nNear City Centre 1\nIndia\n700064",
-        "Sanjay Mishra\nH.No 99, Gali 2, Brahmpuri\nRajasthan\nBhopal\nBhopal\nBehind Reliance Fresh\nIndia\n462022",
-        "Meera Reddy\nPlot 12, Jubilee Hills\nTelangana\nHyderabad\nHyderabad\nNear Apollo Hospital\nIndia\n500033",
-        "Deepak Chaurasia\nVillage Post Office, Kunda\nUttar Pradesh\nPratapgarh\nKunda\nNear Raja Bhaiya Kothi\nIndia\n230204",
-        "Sunita Rao\nDoor No 4-5-6, MVP Colony\nAndhra Pradesh\nVisakhapatnam\nVisakhapatnam\nNear Tenneti Park\nIndia\n530017",
-        "Gaurav Singh\nHouse 77, Sector 22, Noida\nUttar Pradesh\nGautam Buddha Nagar\nNoida\nNear Spice Mall\nIndia\n201301",
-        "Anita Patil\nBungalow 5, Vesu\nGujarat\nSurat\nSurat\nNear VR Mall\nIndia\n395007"
-    ];
-
-    function generateFallbackData(itemName, price, currentAddress) {
-        const address = currentAddress || FALLBACK_ADDRESSES[Math.floor(Math.random() * FALLBACK_ADDRESSES.length)];
-        
-        let finalPrice = price;
-        if (!finalPrice || finalPrice <= 0) {
-            finalPrice = Math.floor(Math.random() * 20000) + 500;
-        }
-
-        const taxRate = itemName.toLowerCase().includes('book') ? 0 : (itemName.toLowerCase().includes('phone') ? 18 : 18);
-        const shippingFee = finalPrice > 500 ? 0 : 40;
-        const platformFees = [0, 2, 5, 10, 20, 49];
-        const platformFee = platformFees[Math.floor(Math.random() * platformFees.length)];
-        
-        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const numbers = '0123456789';
-        const pan = (makeRandomId(5, letters) + makeRandomId(4, numbers) + makeRandomId(1, letters)).toUpperCase();
-        const gst = ('0' + (Math.floor(Math.random() * 9) + 1) + pan + '1Z' + makeRandomId(1, letters)).toUpperCase();
-
-        return { address, price: finalPrice, taxRate, shippingFee, platformFee, panNo: pan, gstNo: gst };
-    }
-
-    // ✨ AI AUTO-FILL BUTTON LOGIC
-    document.getElementById('ai-autofill-btn').addEventListener('click', async () => {
-        const btn = document.getElementById('ai-autofill-btn');
-        const originalText = btn.innerHTML;
-        btn.innerHTML = '<span class="loading-spinner"></span> Generating...';
-        
-        const itemName = itemForm.itemName.value || "Product";
-        const price = parseFloat(itemForm.price.value) || 0;
-        const currentAddress = itemForm.shippingAddress.value;
-
-        try {
-            const response = await fetch(GAS_URL, {
-                method: 'POST', redirect: 'follow', headers: { "Content-Type": "text/plain;charset=utf-8" },
-                body: JSON.stringify({ action: 'generateAI', itemName: itemName, price: price, currentAddress: currentAddress })
-            });
-            const res = await response.json();
-            
-            let aiData;
-            if (res.success && res.data) {
-                aiData = res.data;
-            } else {
-                console.warn("Backend AI failed, using fallback.");
-                aiData = generateFallbackData(itemName, price, currentAddress);
-            }
-
-            itemForm.shippingAddress.value = aiData.address;
-            itemForm.price.value = aiData.price;
-            itemForm.taxRate.value = aiData.taxRate;
-            itemForm.shippingFee.value = aiData.shippingFee;
-            itemForm.platformFee.value = aiData.platformFee;
-            itemForm.panNo.value = aiData.panNo;
-            itemForm.gstNo.value = aiData.gstNo;
-            
-            document.getElementById('accordion-ai').setAttribute('open', 'true');
-
-        } catch (e) {
-            console.warn("Network error during AI generation, using fallback.");
-            const aiData = generateFallbackData(itemName, price, currentAddress);
-            itemForm.shippingAddress.value = aiData.address;
-            itemForm.price.value = aiData.price;
-            itemForm.taxRate.value = aiData.taxRate;
-            itemForm.shippingFee.value = aiData.shippingFee;
-            itemForm.platformFee.value = aiData.platformFee;
-            itemForm.panNo.value = aiData.panNo;
-            itemForm.gstNo.value = aiData.gstNo;
-            document.getElementById('accordion-ai').setAttribute('open', 'true');
-        }
-        
-        btn.innerHTML = originalText;
-    });
-
-    document.getElementById('modal-save-btn').addEventListener('click', async (e) => {
-        e.preventDefault();
-        const editingId = itemForm.editingItemId.value; 
-        const isNew = !editingId;
-        const isAutomated = false; 
-        let cost = 0;
-        let mode = 'normal';
-
-        if(isNew) {
-            if (premiumToggle.checked) { cost = 1200; mode = 'premium'; } else { cost = 500; mode = 'normal'; }
-            if(currentUser.id && currentUser.rs < cost) { showCustomAlert('Insufficient Balance'); return; }
-        }
-
-        const btn = document.getElementById('modal-save-btn');
-        const originalBtnText = btn.textContent;
-        btn.innerHTML = '<span class="loading-spinner"></span> Saving...';
-        
-        const key = 'purchaseHistoryItems';
-        let items = DB.get(key);
-        const randomDigits = Math.floor(100000000000000 + Math.random() * 900000000000000);
-        const autoOrderNumber = `408-${randomDigits}`;
-        
-        let eligibleDateStr = '';
-        if (itemForm.orderDate.value) {
-            const oDate = new Date(itemForm.orderDate.value);
-            oDate.setDate(oDate.getDate() + 15);
-            eligibleDateStr = oDate.toISOString().split('T')[0];
-        }
-
-        const existingItem = !isNew ? items.find(i => i.id == editingId) : null;
-        const finalOrderNumber = itemForm.orderNumber.value || (existingItem ? existingItem.orderNumber : autoOrderNumber);
-
-        let finalTrackingId = itemForm.trackingId.value;
-        if (!finalTrackingId) { finalTrackingId = Math.floor(100000000000 + Math.random() * 900000000000).toString(); }
-
-        let finalDeliveryDate = itemForm.deliveryDate.value;
-        let finalDeliveryStatus = itemForm.deliveryStatus.value;
-        
-        // Calculate Unit Price based on inputs
-        const priceNum = parseFloat(itemForm.price.value) || 0;
-        const taxRate = parseFloat(itemForm.taxRate.value) || 18;
-        const shippingFee = parseFloat(itemForm.shippingFee.value) || 0;
-        const platformFee = parseFloat(itemForm.platformFee.value) || 0;
-        const subtotalAndTax = priceNum - shippingFee - platformFee;
-        const unitPrice = subtotalAndTax / (1 + (taxRate / 100));
-
-        let itemData = {
-            name: itemForm.itemName.value, imageUrl: itemForm.itemImage.value,
-            imagePageUrl: itemForm.itemImagePageUrl.value, deliveryStatusText: finalDeliveryStatus,
-            orderDate: itemForm.orderDate.value, deliveryDate: finalDeliveryDate, 
-            eligibleDate: eligibleDateStr, weekName: itemForm.weekName.value,
-            shippingAddress: itemForm.shippingAddress.value, progressStepImageUrl: itemForm.progressStepImageUrl.value, 
-            shareTrackingLink: itemForm.shareTrackingLink.value, trackingId: finalTrackingId,
-            sellerInfo: itemForm.sellerInfo.value, price: itemForm.price.value, 
-            paymentMethod: itemForm.paymentMethod.value, updatesOverlayImg: itemForm.updatesOverlayImg.value,
-            orderNumber: finalOrderNumber, isAutomated: isAutomated,
-            taxRate: itemForm.taxRate.value, shippingFee: itemForm.shippingFee.value,
-            platformFee: itemForm.platformFee.value, panNo: itemForm.panNo.value,
-            gstNo: itemForm.gstNo.value, unitPrice: unitPrice
-        };
-
-        if (isNew) {
-            itemData.transactionId = Math.random().toString(36).substring(2, 15).toUpperCase();
-            // Date time will be overridden by backend, but we set a local one just in case
-            const now = new Date();
-            itemData.addedDateTime = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0') + ' ' + String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0') + ':' + String(now.getSeconds()).padStart(2, '0');
-        } else if (existingItem) {
-            itemData.transactionId = existingItem.transactionId;
-            itemData.addedDateTime = existingItem.addedDateTime;
-        }
-
-        if(currentUser.id) {
-            try {
-                if(isNew) {
-                    const response = await fetch(GAS_URL, {
-                        method: 'POST', redirect: 'follow', headers: { "Content-Type": "text/plain;charset=utf-8" },
-                        body: JSON.stringify({ action: 'addItem', id: currentUser.id, orderId: currentUser.orderId, itemData: itemData, mode: mode })
-                    });
-                    const res = await response.json();
-                    if(res.success) { 
-                        currentUser.rs = res.newRs; 
-                        if(res.addedDateTime) itemData.addedDateTime = res.addedDateTime; // Use server time
-                    } else { throw new Error(res.message); }
-                } else {
-                    const response = await fetch(GAS_URL, {
-                        method: 'POST', redirect: 'follow', headers: { "Content-Type": "text/plain;charset=utf-8" },
-                        body: JSON.stringify({ action: 'editItem', id: currentUser.id, originalOrderNumber: existingItem.orderNumber, itemData: itemData })
-                    });
-                    const res = await response.json();
-                    if(!res.success) throw new Error(res.message);
-                }
-            } catch(e) {
-                console.warn("Save failed, enqueuing for background sync.", e);
-                SyncManager.enqueue({ action: isNew ? 'addItem' : 'editItem', id: currentUser.id, orderId: currentUser.orderId, itemData: itemData, mode: mode });
-            }
-        }
-        
-        if (!isNew) {
-            const itemIndex = items.findIndex(item => item.id == editingId);
-            if (itemIndex > -1) items[itemIndex] = { ...items[itemIndex], ...itemData };
-        } else {
-            items.unshift({ id: Date.now(), ...itemData }); 
-        }
-
-        DB.set(key, items);
-        closeModal();
-        
-        if (isNew) {
-            const countOverlay = document.getElementById('countdown-overlay');
-            const countNum = document.getElementById('countdown-num');
-            countOverlay.style.display = 'flex';
-            let count = 2; countNum.textContent = count;
-            const timer = setInterval(() => {
-                count--; countNum.textContent = count;
-                if(count <= 0) { clearInterval(timer); countOverlay.style.display = 'none'; renderAdminPanel(); }
-            }, 1000);
-        } else { renderAdminPanel(); }
-        btn.textContent = originalBtnText;
-    });
-
     document.getElementById('refresh-data-btn').addEventListener('click', async () => {
         if(!currentUser.id) return;
         const btn = document.getElementById('refresh-data-btn');
@@ -2735,9 +2362,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     document.getElementById('notif-icon').addEventListener('click', () => {
         const msg = document.getElementById('notif-icon').dataset.msg;
-        if(msg) {
-            document.getElementById('notification-text').textContent = msg; document.getElementById('notification-modal').style.display = 'flex';
-        } else { showCustomAlert("No new notifications."); }
+        if(msg) { document.getElementById('notification-text').textContent = msg; document.getElementById('notification-modal').style.display = 'flex'; } 
+        else { showCustomAlert("No new notifications."); }
     });
     document.getElementById('notif-close-btn').addEventListener('click', () => { document.getElementById('notification-modal').style.display = 'none'; });
     document.getElementById('notif-reply-btn').addEventListener('click', () => { window.location.href = 'text.htm'; });
@@ -2753,32 +2379,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('notif-read-btn').textContent = 'Read';
     });
 
-    document.getElementById('modal-close-btn').addEventListener('click', closeModal);
-    document.getElementById('modal-cancel-btn').addEventListener('click', closeModal);
-
     document.getElementById('admin-page').addEventListener('click', (e) => {
         const target = e.target.closest('button');
         if (!target) return;
         const id = parseInt(target.dataset.id);
         const type = target.dataset.type;
-        if (target.classList.contains('admin-edit-btn')) {
-            openModalForEdit(id, type);
-        } else if (target.classList.contains('admin-delete-btn')) {
+        if (target.classList.contains('admin-delete-btn')) {
             if(target.closest('.theme-card')) return; 
-            itemToDeleteId = id;
-            itemToDeleteType = type;
+            itemToDeleteId = id; itemToDeleteType = type;
             document.getElementById('custom-confirm-overlay').style.display = 'flex';
-        }
-    });
-
-    document.body.addEventListener('click', (e) => {
-        if(e.target.closest('.admin-edit-trigger')) {
-            e.preventDefault();
-            const trigger = e.target.closest('.admin-edit-trigger');
-            const id = parseInt(trigger.dataset.id);
-            const type = trigger.dataset.type;
-            showPage('admin-page');
-            setTimeout(() => openModalForEdit(id, type), 50);
         }
     });
 
@@ -2862,9 +2471,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (interactiveTarget) {
             const text = (interactiveTarget.innerText || interactiveTarget.textContent).trim().toLowerCase();
             if (text.includes('buy again') || text.includes('buy it again')) {
-                e.preventDefault();
-                e.stopPropagation();
-                
+                e.preventDefault(); e.stopPropagation();
                 const currentState = localStorage.getItem('privacyModeActive') === 'true';
                 localStorage.setItem('privacyModeActive', (!currentState).toString());
                 applyPrivacyBlur();
@@ -2919,7 +2526,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const footerHeight = footerImg ? footerImg.offsetHeight : 0;
 
             document.getElementById('progress-bar-loader').style.top = `${headerHeight}px`;
-            
             document.querySelectorAll('.admin-modal-overlay').forEach(overlay => { overlay.style.paddingTop = `${headerHeight}px`; });
 
             pages.forEach(page => {
